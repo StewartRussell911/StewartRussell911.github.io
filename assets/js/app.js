@@ -7,7 +7,7 @@ var config = {
   sortOrder: "desc"
 };
 
-var properties = [{
+
   value: "fulcrum_id",
   label: "Fulcrum ID",
   table: {
