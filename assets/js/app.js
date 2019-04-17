@@ -7,8 +7,6 @@ var config = {
   sortOrder: "desc"
 };
 
-var marker = L.marker([51.5, -0.09]).addTo(map);
-
 var properties = [{
   value: "fulcrum_id",
   label: "Fulcrum ID",
@@ -223,6 +221,7 @@ $(function() {
   $("#layer-name").html(config.layerName);
 });
 
+//builds the table layout
 function buildConfig() {
   filters = [];
   table = [{
@@ -699,3 +698,5 @@ $("#download-pdf-btn").click(function() {
 $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
+
+var circle = L.circle([51.508, -0.11], {color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(map);
