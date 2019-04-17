@@ -7,6 +7,8 @@ var config = {
   sortOrder: "desc"
 };
 
+var marker = L.marker([51.5, -0.09]).addTo(mymap);
+
 var properties = [{
   value: "fulcrum_id",
   label: "Fulcrum ID",
