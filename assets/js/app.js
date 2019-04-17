@@ -1,9 +1,18 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Many Park Trees",
+  title: "Park Trees",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
+  sortOrder: "desc"
+};
+
+var config = {
+  geojson: "./data/congress_park_trees.geojson",
+  title: "More Park Trees",
+  layerName: "MoreTrees",
+  hoverProperty: "dbh_2012_inches_diameter_at_breast_height_46",
+  sortProperty: "species_sim",
   sortOrder: "desc"
 };
 
