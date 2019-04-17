@@ -7,15 +7,6 @@ var config = {
   sortOrder: "desc"
 };
 
-var config = {
-  geojson: "./data/congress_park_trees.geojson",
-  title: "More Park Trees",
-  layerName: "MoreTrees",
-  hoverProperty: "dbh_2012_inches_diameter_at_breast_height_46",
-  sortProperty: "species_sim",
-  sortOrder: "desc"
-};
-
 var properties = [{
   value: "fulcrum_id",
   label: "Fulcrum ID",
@@ -325,6 +316,12 @@ var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.
   attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });
 
+var MapLyr = L.tileLayer("https://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv?", {
+  maxZoom: 19,
+  subdomains: ["otile1", "otile2", "otile3", "otile4"],
+  attribution: 'gebco.net'
+});
+
 var mapquestHYB = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
   maxZoom: 18,
   subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"]
@@ -449,7 +446,8 @@ if (document.body.clientWidth <= 767) {
 }
 var baseLayers = {
   "Street Map": mapquestOSM,
-  "Aerial Imagery": mapquestHYB
+  "Aerial Imagery": mapquestHYB,
+  "GEBCO": MapLyr
 };
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
