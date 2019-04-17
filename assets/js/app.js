@@ -318,10 +318,11 @@ var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.
 
 var MapLyr = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
+		subdomains: ["otile1", "otile2", "otile3", "otile4"],
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-	});
+});
 
 var mapquestHYB = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
   maxZoom: 18,
@@ -448,7 +449,7 @@ if (document.body.clientWidth <= 767) {
 var baseLayers = {
   "Street Map": mapquestOSM,
   "Aerial Imagery": mapquestHYB,
-  "MapBox Light": MapLyrf
+  "MapBox Lite": MapLyr
 };
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
