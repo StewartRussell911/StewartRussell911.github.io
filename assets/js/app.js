@@ -448,8 +448,8 @@ if (document.body.clientWidth <= 767) {
   isCollapsed = false;
 }
 var baseLayers = {
-  "Street Map$": mapquestOSM,
-  "Aerial Imagery$": mapquestHYB
+  "Street Map": mapquestOSM,
+  "Aerial Imagery": mapquestHYB
 };
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
