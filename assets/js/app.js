@@ -136,18 +136,18 @@ var config = {
 
 function drawCharts() {
   // Status
-  //$(function() {
-    //var result = alasql("SELECT status AS label, COUNT(*) AS total FROM ? GROUP BY status", [features]);
-    //var columns = $.map(result, function(status) {
-      //return [[status.label, status.total]];
-    //});
-    //var chart = c3.generate({
-        //bindto: "#status-chart",
-        //data: {
-          //type: "pie",
-          //columns: columns
-        //}
-    //});
+  $(function() {
+    var result = alasql("SELECT status AS label, COUNT(*) AS total FROM ? GROUP BY status", [features]);
+    var columns = $.map(result, function(status) {
+      return [[status.label, status.total]];
+    });
+    var chart = c3.generate({
+        bindto: "#status-chart",
+        data: {
+          type: "pie",
+          columns: columns
+        }
+    });
   });
 
   // Zones
