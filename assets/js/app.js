@@ -312,11 +312,6 @@ function buildConfig() {
 // Basemap Layers
 //Basically 'http://{s}.tile.osm.org/{z}/{x}/{y}.png' to '//{s}.tile.osm.org/{z}/{x}/{y}.png'
 //Basically 'http://{s}.tile.osm.org/{z}/{x}/{y}.png' to '//{s}.tile.osm.org/{z}/{x}/{y}.png'
-
-//L.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    //attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-//}).addTo(map);
-
 var mapquestOSM = L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   subdomains: ["otile1", "otile2", "otile3", "otile4"],
