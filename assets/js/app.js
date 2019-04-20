@@ -1,12 +1,22 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees",
-  layerName: "Trees",
-  hoverProperty: "species_sim",
-  sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
-  sortOrder: "desc"
+  title: "Parks",
+  layerName: "Parks",
+  hoverProperty: "Park",
+  sortProperty: "ID",
+  sortOrder: "Asc"
 };
 
+//var config = {
+  //geojson: "./data/congress_park_trees.geojson",
+  //title: "Park Trees",
+  //layerName: "Trees",
+  //hoverProperty: "species_sim",
+  //sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
+  //sortOrder: "desc"
+//};
+
+//define the main layer's attributes for the table
 var properties = [{
   value: "fulcrum_id",
   label: "Fulcrum ID",
@@ -358,6 +368,7 @@ var highlightLayer = L.geoJson(null, {
   }
 });
 
+//the main feature layer
 var featureLayer = L.geoJson(null, {
   filter: function(feature, layer) {
     return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
