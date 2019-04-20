@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Congress Park Trees",
+  title: "Argh Park Trees",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
@@ -310,14 +310,20 @@ function buildConfig() {
 }
 
 // Basemap Layers
-//Basically 'http://{s}.tile.osm.org/{z}/{x}/{y}.png' to '//{s}.tile.osm.org/{z}/{x}/{y}.png'
-//Basically 'http://{s}.tile.osm.org/{z}/{x}/{y}.png' to '//{s}.tile.osm.org/{z}/{x}/{y}.png'
-var mapquestOSM = L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
   maxZoom: 19,
   subdomains: ["otile1", "otile2", "otile3", "otile4"],
-  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+  attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });
 
+var mapquestHYB = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
+  maxZoom: 18,
+  subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"]
+}), L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"],
+  attribution: 'Labels courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
+})]);
 
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
@@ -433,7 +439,8 @@ if (document.body.clientWidth <= 767) {
   isCollapsed = false;
 }
 var baseLayers = {
-  "Street Map": mapquestOSM
+  "Street Map": mapquestOSM,
+  "Aerial Imagery": mapquestHYB
 };
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
