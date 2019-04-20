@@ -688,7 +688,6 @@ $("#chartModal").on("shown.bs.modal", function (e) {
 });
 
 
-
 var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (map) {
 
@@ -702,6 +701,6 @@ legend.onAdd = function (map) {
             '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
     }
-
     return div;
-}; legend.addTo(map);
+}; 
+legend.addTo(map);
