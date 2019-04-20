@@ -1,7 +1,7 @@
 var config = {
   geojson: "./data/parks.geojson",
   title: "Parks",
-  layerName: "Parks",
+  layerName: "parks",
   hoverProperty: "Park",
   sortProperty: "ID",
   sortOrder: "Asc"
