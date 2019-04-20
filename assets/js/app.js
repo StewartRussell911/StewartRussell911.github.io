@@ -699,4 +699,10 @@ $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
 
-var circle = L.circle([43.0781, 73.7841], {color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(map);
+//var circle = L.circle([43.0781, 73.7841], {color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(map);
+
+// initialize the map on the "map" div with a given center and zoom
+var map = L.map('map', {
+    center: [51.505, -0.09],
+    zoom: 13
+});
