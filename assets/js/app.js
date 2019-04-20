@@ -1,22 +1,12 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees",
+  title: "Congress Park Trees",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc"
 };
 
-//var circle = L.circle([43.0781, 73.7841], {color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(map);
-
-// initialize the map on the "map" div with a given center and zoom
-//var map = L.map('map', {
-    //center: [51.505, -0.09],
-    //zoom: 13
-//});
-
-
-//define the main layer's attributes for the table
 var properties = [{
   value: "fulcrum_id",
   label: "Fulcrum ID",
@@ -231,7 +221,6 @@ $(function() {
   $("#layer-name").html(config.layerName);
 });
 
-//builds the table layout
 function buildConfig() {
   filters = [];
   table = [{
@@ -327,13 +316,14 @@ var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.
   attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });
 
-
-var mapquestHYB = L.tileLayer('https://api.tiles.mapbox.com/v4/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		subdomains: ["otile1", "otile2", "otile3", "otile4"],
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-});
+var mapquestHYB = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
+  maxZoom: 18,
+  subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"]
+}), L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"],
+  attribution: 'Labels courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
+})]);
 
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
@@ -359,7 +349,6 @@ var highlightLayer = L.geoJson(null, {
   }
 });
 
-//the main feature layer
 var featureLayer = L.geoJson(null, {
   filter: function(feature, layer) {
     return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
@@ -426,9 +415,6 @@ var searchControl = L.esri.Geocoding.Controls.geosearch({
   useMapBounds: 17
 }).addTo(map);
 
-//try zoom-to
-//var mymap = L.map('map').setView([51.505, -0.09], 13);
-
 // Info control
 var info = L.control({
   position: "bottomleft"
@@ -454,9 +440,8 @@ if (document.body.clientWidth <= 767) {
 }
 var baseLayers = {
   "Street Map": mapquestOSM,
-  "Aerial Imagery": mapquestHYB,
-  };
-  
+  "Aerial Imagery": mapquestHYB
+};
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
 };
@@ -703,7 +688,3 @@ $("#download-pdf-btn").click(function() {
 $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
-
-
-
-
