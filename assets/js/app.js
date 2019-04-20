@@ -320,8 +320,8 @@ var mapquestHYB = L.layerGroup([L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/s
 })]);
 
 
-var Aerial = L.tileLayer('https://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png', {
-    attribution: 'Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agri\culture, Farm Service Agency. Tiles courtesy of '+'<a href="http://www.mapquest.com//">MapQuest</a>'+'<img src="http://developer.mapquest.com/content/osm/mq_logo.pn\g">',
+var Aerial = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; <a href="http://www.esri.com/">Esri</a> i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
     maxZoom: 18,
     subdomains: '1234',
 });
