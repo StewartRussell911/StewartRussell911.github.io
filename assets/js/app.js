@@ -699,4 +699,4 @@ $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
 
-var circle = L.circle([-73.783565,43.075494], {color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(map);
+var circle = L.circle([43.0781, 73.7841], {color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(map);
