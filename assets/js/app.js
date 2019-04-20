@@ -310,17 +310,17 @@ function buildConfig() {
 }
 
 // Basemap Layers
-var mapquestHYB = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
+var mapquestHYB = L.layerGroup([L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
   maxZoom: 18,
   subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"]
-}), L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png", {
+}), L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png", {
   maxZoom: 19,
   subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"],
   attribution: 'Labels courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
 })]);
 
 
-var Aerial = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png', {
+var Aerial = L.tileLayer('https://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png', {
     attribution: 'Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agri\culture, Farm Service Agency. Tiles courtesy of '+'<a href="http://www.mapquest.com//">MapQuest</a>'+'<img src="http://developer.mapquest.com/content/osm/mq_logo.pn\g">',
     maxZoom: 18,
     subdomains: '1234',
