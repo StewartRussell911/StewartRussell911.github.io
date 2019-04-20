@@ -1,20 +1,11 @@
 var config = {
-  geojson: "./data/parks.geojson",
-  title: "Parks",
-  layerName: "parks",
-  hoverProperty: "Park",
-  sortProperty: "ID",
-  sortOrder: "Asc"
+  geojson: "./data/congress_park_trees.geojson",
+  title: "Park Trees",
+  layerName: "Trees",
+  hoverProperty: "species_sim",
+  sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
+  sortOrder: "desc"
 };
-
-//var config = {
-  //geojson: "./data/congress_park_trees.geojson",
-  //title: "Park Trees",
-  //layerName: "Trees",
-  //hoverProperty: "species_sim",
-  //sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
-  //sortOrder: "desc"
-//};
 
 //var circle = L.circle([43.0781, 73.7841], {color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(map);
 
@@ -478,6 +469,8 @@ var overlayLayers = {
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
 }).addTo(map);
+
+
 
 // Filter table to only show features in current map bounds
 map.on("moveend", function (e) {
