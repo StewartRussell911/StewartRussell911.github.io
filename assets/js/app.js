@@ -1,5 +1,5 @@
 var config = {
-  geojson: "./data/congress_park_trees.geojson",
+  geojson: "./data/parks.geojson",
   title: "Parks",
   layerName: "Parks",
   hoverProperty: "Park",
@@ -15,6 +15,15 @@ var config = {
   //sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   //sortOrder: "desc"
 //};
+
+//var circle = L.circle([43.0781, 73.7841], {color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(map);
+
+// initialize the map on the "map" div with a given center and zoom
+//var map = L.map('map', {
+    //center: [51.505, -0.09],
+    //zoom: 13
+//});
+
 
 //define the main layer's attributes for the table
 var properties = [{
@@ -710,10 +719,4 @@ $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
 
-//var circle = L.circle([43.0781, 73.7841], {color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 500}).addTo(map);
 
-// initialize the map on the "map" div with a given center and zoom
-var map = L.map('map', {
-    center: [51.505, -0.09],
-    zoom: 13
-});
