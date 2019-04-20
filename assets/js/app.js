@@ -435,6 +435,7 @@ var searchControl = L.esri.Geocoding.Controls.geosearch({
   useMapBounds: 17
 }).addTo(map);
 
+//try zoom-to
 var mymap = L.map('map').setView([51.505, -0.09], 13);
 
 // Info control
