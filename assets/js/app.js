@@ -435,6 +435,8 @@ var searchControl = L.esri.Geocoding.Controls.geosearch({
   useMapBounds: 17
 }).addTo(map);
 
+var mymap = L.map('map').setView([51.505, -0.09], 13);
+
 // Info control
 var info = L.control({
   position: "bottomleft"
@@ -711,5 +713,7 @@ $("#download-pdf-btn").click(function() {
 $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
+
+
 
 
