@@ -4,9 +4,9 @@ var config = {
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
-  sortOrder: "desc"
+  sortOrder: "desc",
 };
-//77
+//777
 
 var properties = [{
   value: "fulcrum_id",
@@ -451,10 +451,11 @@ var baseLayers = {
 
 // loading GeoJSON file - Here my html and file
 var parks;
+
 $.getJSON("./data/parks.geojson",function(data){
 	// L.geoJson function is used to parse geojson file and load on to map
 	//L.geoJson(data).addTo(map);
-	parks = L.geoJson(data);
+	parks = L.geoJson(data).addTo(map);
 });
 		
 //Try load my geojson file here*** //
