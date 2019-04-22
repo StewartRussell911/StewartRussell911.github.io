@@ -7,14 +7,6 @@ var config = {
   sortOrder: "desc"
 };
 
-var config1 = {
-  geojson: "./data/parks.geojson",
-  layerName: "parks",
-  hoverProperty: "Park",
-  sortProperty: "id",
-  sortOrder: "asc"
-};
-
 var properties = [{
   value: "fulcrum_id",
   label: "Fulcrum ID",
@@ -227,7 +219,6 @@ function drawCharts() {
 $(function() {
   $(".title").html(config.title);
   $("#layer-name").html(config.layerName);
-  $("#layer-name1").html(config1.layerName);
 });
 
 function buildConfig() {
@@ -451,7 +442,8 @@ var baseLayers = {
   "Aerial World Imagery":Aerial
 };
 var overlayLayers = {
-  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
+  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
+  "<span id='layer-name'>MY Layer</span>": featureLayer
 };
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
@@ -696,21 +688,3 @@ $("#download-pdf-btn").click(function() {
 $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
-
-
-var legend = L.control({position: 'bottomright'});
-legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-        labels = [];
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < grades.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-    }
-    return div;
-}; 
-legend.addTo(map);
