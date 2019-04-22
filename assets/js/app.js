@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Tree5",
+  title: "Park Tree - 1",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
@@ -322,11 +322,6 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
 });
 
-var OSM1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
-            maxZoom: 18,
-});
-
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, {
@@ -445,9 +440,25 @@ var baseLayers = {
   "Open Street Map": OSM,
   "Aerial World Imagery":Aerial
 };
+
+//Try load my geojson file here //
+var OSM1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
+            maxZoom: 18,
+});
+
+var parks = L.geoJson("./data/parks.geojson",{
+           style: {
+               "color": "#ff7800",
+               "weight": 5,
+               "opacity": 0.65
+            }
+        }).addTo(map);
+//Try load my geojson file here //
+
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
-  "<span id='osm'>OSM Layer</span>": OSM1
+  "<span id='osm'>parks</span>": parks
 };
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
