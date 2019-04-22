@@ -449,12 +449,11 @@ var baseLayers = {
 //});
 
 	
-	// THIS IS NEW
+// THIS IS NEW
 var parks = $.getJSON("./data/parks.geojson");
 parks.then(function(data) {
-    //do a bunch of stuff here
-    //console.log(data) // take a look at the data in the console
 	parks = L.geoJson(data);
+	parks.addTo(map);
 });	
 		
 //Try load my geojson file here*** //
