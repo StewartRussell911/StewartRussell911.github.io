@@ -1,5 +1,5 @@
 var config = {
-  geojson: "./data/congress_park_trees.geojson",
+  geojson: "./data/parks.geojson",
   title: "Park Tree3",
   layerName: "Trees",
   hoverProperty: "species_sim",
