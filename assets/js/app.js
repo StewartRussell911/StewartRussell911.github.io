@@ -451,11 +451,10 @@ var baseLayers = {
 
 // loading GeoJSON file - Here my html and file
 var parks;
-
 $.getJSON("./data/parks.geojson",function(data){
 	// L.geoJson function is used to parse geojson file and load on to map
 	//L.geoJson(data).addTo(map);
-	parks = L.geoJson(data).addTo(map);
+	parks = data;
 });
 		
 //Try load my geojson file here*** //
