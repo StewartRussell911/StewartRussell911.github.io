@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees2",
+  title: "Park Tree3",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
@@ -316,13 +316,11 @@ var Aerial = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/W
     subdomains: '1234',
 });
 	
-//OpenStreetMap
+
 var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap</a>',
             maxZoom: 18,
 });
-
-
 
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
@@ -348,7 +346,7 @@ var highlightLayer = L.geoJson(null, {
   }
 });
 
-var featuregLayer = L.geoJson(null, {
+var featureLayer = L.geoJson(null, {
   filter: function(feature, layer) {
     return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
   },
@@ -438,7 +436,6 @@ if (document.body.clientWidth <= 767) {
   isCollapsed = false;
 }
 
-//Add the background layers
 var baseLayers = {
   "Open Street Map": OSM,
   "Aerial World Imagery":Aerial
@@ -446,8 +443,6 @@ var baseLayers = {
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
 };
-
-
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
 }).addTo(map);
@@ -691,3 +686,21 @@ $("#download-pdf-btn").click(function() {
 $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
+
+
+var legend = L.control({position: 'bottomright'});
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+    return div;
+}; 
+legend.addTo(map);
