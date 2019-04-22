@@ -441,7 +441,7 @@ var baseLayers = {
   "Aerial World Imagery":Aerial
 };
 
-//Try load my geojson file here //
+//*** Try load my geojson file here //
 var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
             maxZoom: 18,
@@ -456,12 +456,60 @@ var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         //})
 		//.addTo(map);
 		
+		  var a_gardenLayer;
+          var a_selection;
+          var a_selectedLayer;
+
+          // define the styles for the garden layer (unselected and selected)
+          function gardenStyle(feature) {
+            return {
+               fillColor: "#FF00FF",
+               fillOpacity: 1,
+               color: '#B04173',
+            };
+          }
+
+          function gardenSelectedStyle(feature) {
+             return {
+               fillColor: "#00FFFB",
+               color: '#0000FF',
+               fillOpacity: 1
+            };
+          }
+
+          // handle click events on garden features
+          function gardenOnEachFeature(feature, layer){
+            layer.on({
+              click: function(e) {
+                  if (selection) {            
+                    resetStyles();
+                  }
+              
+                  e.target.setStyle(gardenSelectedStyle());
+                  selection = e.target;
+                  selectedLayer = a_gardenLayer;
+
+                  // Insert some HTML with the feature name
+                  buildSummaryLabel(feature);
+
+                  L.DomEvent.stopPropagation(e); // stop click event from being propagated further
+                }
+            });
+          }
+
+                // add the gardens GeoJSON layer using the gardensData variable from gardens.js
+                var a_gardenLayer = new L.geoJSON("./data/parks.geojson",{
+                  style: gardenStyle,
+                  onEachFeature: gardenOnEachFeature
+                });
+                gardenLayer.addTo(map);		
 		
-//Try load my geojson file here //
+		
+//Try load my geojson file here*** //
 
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
-  "<span id='osm'>parks</span>": parks
+  "<span id='osm'>parks</span>": a_gardenLayer
 };
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
