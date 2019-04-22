@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/parks.geojson",
-  title: "Park Tree3",
+  title: "Park Tree4",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
