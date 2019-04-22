@@ -6,7 +6,7 @@ var config = {
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
-//10
+//11
 
 var properties = [{
   value: "fulcrum_id",
@@ -448,15 +448,13 @@ var baseLayers = {
 //            maxZoom: 18,
 //});
 
-
-// loading GeoJSON file - Here my html and file
-$.getJSON("./data/parks.geojson",function(data){
-	// L.geoJson function is used to parse geojson file and load on to map
-	var parks = L.geoJson(data),{
-		onEachFeature: function(feature, featureLayer) {
-		featureLayer.bindPopup(feature.properties.Park);
-		}
-	}).addTo(map);
+	
+	// THIS IS NEW
+var parks = $.getJSON("./data/parks.geojson");
+parks.then(function(data) {
+    //do a bunch of stuff here
+    //console.log(data) // take a look at the data in the console
+});	
 		
 //Try load my geojson file here*** //
 
