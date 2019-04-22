@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees - Dashboard",
+  title: "Park Trees > Dashboard",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
@@ -705,7 +705,7 @@ $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
 
-// loading GeoJSON file - Here my html and usa_adm.geojson file resides in same folder
+// loading GeoJSON file - Here my html and file
 $.getJSON("./data/parks.geojson",function(data){
 // L.geoJson function is used to parse geojson file and load on to map
 L.geoJson(data).addTo(map);
