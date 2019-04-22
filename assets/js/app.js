@@ -7,6 +7,15 @@ var config = {
   sortOrder: "desc"
 };
 
+var config1 = {
+  geojson: "./data/parks.geojson",
+  title: "Parks",
+  layerName: "parks",
+  hoverProperty: "Park",
+  sortProperty: "id",
+  sortOrder: "asc"
+};
+
 var properties = [{
   value: "fulcrum_id",
   label: "Fulcrum ID",
@@ -219,6 +228,7 @@ function drawCharts() {
 $(function() {
   $(".title").html(config.title);
   $("#layer-name").html(config.layerName);
+  $("#layer-name1").html(config1.layerName);
 });
 
 function buildConfig() {
@@ -316,7 +326,7 @@ var Aerial = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/W
     subdomains: '1234',
 });
 	
-
+//OpenStreetMap
 var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap</a>',
             maxZoom: 18,
@@ -436,6 +446,7 @@ if (document.body.clientWidth <= 767) {
   isCollapsed = false;
 }
 
+//Add the background layers
 var baseLayers = {
   "Open Street Map": OSM,
   "Aerial World Imagery":Aerial
