@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Tree4",
+  title: "Park Tree5",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
@@ -447,7 +447,8 @@ var baseLayers = {
   "OSM1":OSM1
 };
 var overlayLayers = {
-  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
+  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
+  "<span id='osm'>OSM Layer</span>": OSM1
 };
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
