@@ -322,6 +322,8 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
 });
 
+var Parks = new L.GeoJSON.AJAX("./data/parks.geojson");geojsonLayer.addTo(map);
+
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, {
@@ -439,17 +441,15 @@ if (document.body.clientWidth <= 767) {
 //Add the background layers
 var baseLayers = {
   "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial
+  "Aerial World Imagery":Aerial,
+  "Parks":Parks
 };
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
 };
 
-var overlayPolyLayer = {
-  "<span id='layer-name'>MY Layer</span>": featureLayer
-};
 
-var layerControl = L.control.layers(baseLayers, overlayLayers, overlayPolyLayer, {
+var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
 }).addTo(map);
 
