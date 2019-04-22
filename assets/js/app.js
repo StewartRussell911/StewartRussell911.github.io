@@ -443,19 +443,21 @@ var baseLayers = {
 };
 
 //*** Try load my geojson file here //
-//var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
-//            maxZoom: 18,
-//});
+	//as a baselayer i.e. tile wms
+	//var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	//            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
+	//            maxZoom: 18,
+	//});
 
-	
-// THIS IS NEW
 var parks = $.getJSON("./data/parks.geojson");
 parks.then(function(data) {
+	//get the parks as geojson
 	parks = L.geoJson(data);
+	
+	//add immediately to map UI
 	parks.addTo(map);
 });	
-		
+
 //Try load my geojson file here*** //
 
 var overlayLayers = {
