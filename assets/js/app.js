@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees - Dashboard 5",
+  title: "Park Trees - Dashboard 6",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
@@ -442,16 +442,17 @@ var baseLayers = {
 };
 
 //*** Try load my geojson file here //
-//var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
-//            maxZoom: 18,
-//});
+var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
+            maxZoom: 18,
+});
 
-var parks = new L.geoJson("./data/parks.geojson",{
-         style: {
-           "color": "#ff7800","weight": 5,"opacity": 0.65}
-        })
-		//.addTo(map);	
+//DOES NOT WORK
+//var parks = new L.geoJson("./data/parks.geojson",{
+//         style: {
+//           "color": "#ff7800","weight": 5,"opacity": 0.65}
+//        })
+//		//.addTo(map);	
 		
 		
 //Try load my geojson file here*** //
