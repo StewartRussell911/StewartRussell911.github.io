@@ -1,5 +1,5 @@
 var config = {
-  geojson: "./data/parks.geojson",
+  geojson: "./data/congress_park_trees.geojson",
   title: "Park Tree4",
   layerName: "Trees",
   hoverProperty: "species_sim",
@@ -322,6 +322,11 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
 });
 
+var OSM1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
+            maxZoom: 18,
+});
+
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, {
@@ -438,7 +443,8 @@ if (document.body.clientWidth <= 767) {
 
 var baseLayers = {
   "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial
+  "Aerial World Imagery":Aerial,
+  "OSM1":OSM1
 };
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
@@ -687,20 +693,3 @@ $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
 });
 
-
-var legend = L.control({position: 'bottomright'});
-legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-        labels = [];
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < grades.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-    }
-    return div;
-}; 
-legend.addTo(map);
