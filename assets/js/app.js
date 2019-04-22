@@ -1,6 +1,7 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees - Dashboard 6",
+  geojson2: "./data/parks.geojson",
+  title: "Park Trees - Dashboard 7",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
@@ -452,14 +453,70 @@ var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //         style: {
 //           "color": "#ff7800","weight": 5,"opacity": 0.65}
 //        })
-//		//.addTo(map);	
+//		//.addTo(map);
+
+var featurePLayer = L.geoJson(null, {
+  filter: function(feature, layer) {
+    return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
+  },
+  /*style: function (feature) {
+    return {
+      color: feature.properties.color
+    };
+  },*/
+  
+    if (feature.properties && feature.properties["marker-color"]) {
+      markerColor = feature.properties["marker-color"];
+    } else {
+      markerColor = "#FF0000";
+    }
+    return L.circleMarker(latlng, {
+      radius: 4,
+      weight: 2,
+      fillColor: markerColor,
+      color: markerColor,
+      opacity: 1,
+      fillOpacity: 1
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      layer.on({
+        click: function (e) {
+          identifyFeature(L.stamp(layer));
+          highlightLayer.clearLayers();
+          highlightLayer.addData(featureLayer.getLayer(L.stamp(layer)).toGeoJSON());
+        },
+        mouseover: function (e) {
+          if (config.hoverProperty) {
+            $(".info-control").html(feature.properties[config.hoverProperty]);
+            $(".info-control").show();
+          }
+        },
+        mouseout: function (e) {
+          $(".info-control").hide();
+        }
+      });
+    }
+  }
+});
+
+// Fetch the GeoJSON2 file
+$.getJSON(config.geojson2, function (data) {
+  geojson2 = data;
+  features = $.map(geojson2.features, function(feature) {
+    return feature.properties;
+  });
+  featurePLayer.addData(data);
+  $("#loading-mask").hide();
+});
 		
 		
 //Try load my geojson file here*** //
 
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
-  "<span id='osm'>parks</span>": parks
+  "<span id='osm'>parks</span>": featurePLayer
 };
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
