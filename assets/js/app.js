@@ -1,12 +1,12 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees - Dashboard 77",
+  title: "Park Trees - Dashboard",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc"
 };
-//77
+//777
 
 var properties = [{
   value: "fulcrum_id",
@@ -464,7 +464,6 @@ var featurePLayer = L.geoJson(null, {
       color: feature.properties.color
     };
   },*/
-  
     if (feature.properties && feature.properties["marker-color"]) {
       markerColor = feature.properties["marker-color"];
     } else {
@@ -498,8 +497,7 @@ var featurePLayer = L.geoJson(null, {
         }
       });
     }
-  }
-});
+  });
 
 // Fetch the GeoJSON2 file
 var mygeojsonfile = "./data/parks.geojson";
