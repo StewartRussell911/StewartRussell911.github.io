@@ -1,6 +1,5 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  geojson2: "./data/parks.geojson",
   title: "Park Trees - Dashboard 7",
   layerName: "Trees",
   hoverProperty: "species_sim",
@@ -502,7 +501,8 @@ var featurePLayer = L.geoJson(null, {
 });
 
 // Fetch the GeoJSON2 file
-$.getJSON(config.geojson2, function (data) {
+var mygeojsonfile = "./data/parks.geojson";
+$.getJSON(mygeojsonfile, function (data) {
   geojson2 = data;
   features = $.map(geojson2.features, function(feature) {
     return feature.properties;
