@@ -16,7 +16,8 @@
     </script>
 
     <script>
-        var map = L.map('map').setView([-41.2858, 174.78682], 14);
+        //var map = L.map('map').setView([-41.2858, 174.78682], 14);
+		var map = L.map('map').setView([-73.7871, 43.07826], 14);
         mapLink = 
             '<a href="https://openstreetmap.org">OpenStreetMap</a>';
         L.tileLayer(
@@ -32,25 +33,6 @@
 	  attribution: '&copy; ' + mapLink + ', ' + wholink,
 	  maxZoom: 18,
 	  }).addTo(map);
-	  
-	  
-	//add a legend
-	var legend = L.control({position: 'bottomright'});
-	legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
-        labels = [];
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < grades.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-    }
-    return div;
-}; 
-legend.addTo(map);
 
 
 
