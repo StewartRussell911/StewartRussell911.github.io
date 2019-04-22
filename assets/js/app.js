@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Tree - 1",
+  title: "Park Tree - 2",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
@@ -453,7 +453,8 @@ var parks = L.geoJson("./data/parks.geojson",{
                "weight": 5,
                "opacity": 0.65
             }
-        }).addTo(map);
+        })
+		//.addTo(map);
 //Try load my geojson file here //
 
 var overlayLayers = {
