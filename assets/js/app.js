@@ -708,5 +708,5 @@ $("#chartModal").on("shown.bs.modal", function (e) {
 // loading GeoJSON file - Here my html and usa_adm.geojson file resides in same folder
 $.getJSON("./data/parks.geojson",function(data){
 // L.geoJson function is used to parse geojson file and load on to map
-L.geoJson(data).addTo(newMap);
+L.geoJson(data).addTo(map);
 });
