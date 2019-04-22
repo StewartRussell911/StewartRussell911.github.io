@@ -443,8 +443,7 @@ if (document.body.clientWidth <= 767) {
 
 var baseLayers = {
   "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial,
-  "OSM1":OSM1
+  "Aerial World Imagery":Aerial
 };
 var overlayLayers = {
   "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
