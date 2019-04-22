@@ -346,7 +346,7 @@ var highlightLayer = L.geoJson(null, {
   }
 });
 
-var featureLayer = L.geoJson(null, {
+var featuregLayer = L.geoJson(null, {
   filter: function(feature, layer) {
     return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
   },
@@ -442,10 +442,14 @@ var baseLayers = {
   "Aerial World Imagery":Aerial
 };
 var overlayLayers = {
-  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
+  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
+};
+
+var overlayPolyLayer = {
   "<span id='layer-name'>MY Layer</span>": featureLayer
 };
-var layerControl = L.control.layers(baseLayers, overlayLayers, {
+
+var layerControl = L.control.layers(baseLayers, overlayLayers, overlayPolyLayer, {
   collapsed: isCollapsed
 }).addTo(map);
 
