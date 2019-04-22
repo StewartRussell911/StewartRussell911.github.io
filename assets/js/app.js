@@ -6,7 +6,7 @@ var config = {
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
-//11
+//12
 
 var properties = [{
   value: "fulcrum_id",
@@ -454,6 +454,7 @@ var parks = $.getJSON("./data/parks.geojson");
 parks.then(function(data) {
     //do a bunch of stuff here
     //console.log(data) // take a look at the data in the console
+	parks = L.geoJson(data);
 });	
 		
 //Try load my geojson file here*** //
