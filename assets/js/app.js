@@ -6,7 +6,7 @@ var config = {
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc"
 };
-//7
+//77
 
 var properties = [{
   value: "fulcrum_id",
@@ -443,17 +443,19 @@ var baseLayers = {
 };
 
 //*** Try load my geojson file here //
-var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
-            maxZoom: 18,
-});
+//var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
+//            maxZoom: 18,
+//});
 
-//DOES NOT WORK
-//var parks = new L.geoJson("./data/parks.geojson",{
-//         style: {
-//           "color": "#ff7800","weight": 5,"opacity": 0.65}
-//        })
-//		//.addTo(map);	
+
+// loading GeoJSON file - Here my html and file
+var parks;
+$.getJSON("./data/parks.geojson",function(data){
+	// L.geoJson function is used to parse geojson file and load on to map
+	//L.geoJson(data).addTo(map);
+	parks = L.geoJson(data);
+});
 		
 //Try load my geojson file here*** //
 
@@ -703,10 +705,4 @@ $("#download-pdf-btn").click(function() {
 
 $("#chartModal").on("shown.bs.modal", function (e) {
   drawCharts();
-});
-
-// loading GeoJSON file - Here my html and file
-$.getJSON("./data/parks.geojson",function(data){
-// L.geoJson function is used to parse geojson file and load on to map
-L.geoJson(data).addTo(map);
 });
