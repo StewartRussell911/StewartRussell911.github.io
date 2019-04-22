@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Tree - 2",
+  title: "Park Trees - Dashboard",
   layerName: "Trees",
   hoverProperty: "species_sim",
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
@@ -316,7 +316,7 @@ var Aerial = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/W
     subdomains: '1234',
 });
 	
-
+//OSM layer
 var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap</a>',
             maxZoom: 18,
