@@ -508,8 +508,8 @@ var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //Try load my geojson file here*** //
 
 var overlayLayers = {
-  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
-  "<span id='osm'>parks</span>": a_gardenLayer
+  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
+  //"<span id='osm'>parks</span>": a_gardenLayer
 };
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
