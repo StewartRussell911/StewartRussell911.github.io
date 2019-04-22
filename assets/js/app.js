@@ -322,11 +322,7 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
 });
 
-//var Parks = new L.GeoJSON.AJAX("./data/parks.geojson");geojsonLayer.addTo(map);
-var Parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Parks Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap</a>',
-            maxZoom: 18,
-});
+
 
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
