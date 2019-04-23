@@ -456,13 +456,15 @@ var baseLayers = {
   "Parks":parks
 };
 
+var home = L.marker([42.8160466667, -73.7989033333],{icon: homeIcon}).addTo(map).bindPopup('<b>Home</b>');map.addLayer(home);
+
 var overlayLayers = {
-  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
+  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
+  "<span id='home'>home</span>": home
   //,"<span id='osm'>parks</span>": parks
 };
-var layerControl = L.control.layers(baseLayers, overlayLayers, {
-  collapsed: isCollapsed
-}).addTo(map);
+
+var layerControl = L.control.layers(baseLayers, overlayLayers, {collapsed: isCollapsed}).addTo(map);
 
 // Filter table to only show features in current map bounds
 map.on("moveend", function (e) {
