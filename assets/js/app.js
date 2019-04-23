@@ -445,7 +445,7 @@ parks.then(function(data) {
 	parks = L.geoJson(data);
 	
 	//add immediately to map UI
-	parks.addTo(map);
+	//parks.addTo(map);
 });	
 
 //Try load my geojson file here*** //
@@ -456,12 +456,12 @@ var baseLayers = {
   "Parks":parks
 };
 
-var home = L.marker([42.8160466667, -73.7989033333],{icon: homeIcon}).addTo(map).bindPopup('<b>Home</b>');map.addLayer(home);
+var home = L.marker([42.8160466667, -73.7989033333],{icon: null}).addTo(map).bindPopup('<b>Home</b>');
+map.addLayer(home);
 
 var overlayLayers = {
-  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
-  "<span id='home'>home</span>": home
-  //,"<span id='osm'>parks</span>": parks
+	"<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
+	"<span id='osm'>parks</span>": parks
 };
 
 var layerControl = L.control.layers(baseLayers, overlayLayers, {collapsed: isCollapsed}).addTo(map);
