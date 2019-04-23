@@ -443,17 +443,16 @@ var parks = $.getJSON("./data/parks.geojson");
 parks.then(function(data) {
 	//get the parks as geojson
 	parks = L.geoJson(data);
-	
 	//add immediately to map UI
 	parks.addTo(map);
-});	
+});
 
 //Try load my geojson file here*** //
 
 var baseLayers = {
   "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial
-  //,"Parks":parks
+  "Aerial World Imagery":Aerial,
+  "Parks":parks
 };
 
 var overlayLayers = {
