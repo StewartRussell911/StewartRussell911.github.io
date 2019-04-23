@@ -468,6 +468,30 @@ var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
 }).addTo(map);
 
+// Add to a grouped layer control as well
+	var groupedOverlays = {
+        "Reprensitives":{
+            "Senate":senate,
+            "Assembly":assembly,
+            "US House":congress
+        }
+
+    };
+
+    var options = {
+      // Make the "Landmarks" group exclusive (use radio inputs)
+      exclusiveGroups: featureLayer,
+      // Show a checkbox next to non-exclusive group labels for toggling all
+      groupCheckboxes: true
+    };
+
+    // Use the custom grouped layer control, not "L.control.layers"
+    var layerControl = L.control.groupedLayers(baseLayers, overlayLayers, options);
+    map.addControl(layerControl);
+   // End of switcher control.
+
+// end
+
 // Filter table to only show features in current map bounds
 map.on("moveend", function (e) {
   syncTable();
