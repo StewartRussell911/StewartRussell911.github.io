@@ -6,7 +6,7 @@ var config = {
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
-//3
+//4
 
 var properties = [{
   value: "fulcrum_id",
@@ -439,19 +439,13 @@ if (document.body.clientWidth <= 767) {
 
 
 //*** Try load my geojson file here //
-	//as a baselayer i.e. tile wms
-	//var parks = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	//            attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap1</a>',
-	//            maxZoom: 18,
-	//});
-
 var parks = $.getJSON("./data/parks.geojson");
 parks.then(function(data) {
 	//get the parks as geojson
 	parks = L.geoJson(data);
 	
 	//add immediately to map UI
-	//parks.addTo(map);
+	parks.addTo(map);
 });	
 
 //Try load my geojson file here*** //
