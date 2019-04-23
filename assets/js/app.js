@@ -6,7 +6,7 @@ var config = {
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
-//1
+//2
 
 var properties = [{
   value: "fulcrum_id",
@@ -437,10 +437,7 @@ if (document.body.clientWidth <= 767) {
   isCollapsed = false;
 }
 
-var baseLayers = {
-  "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial
-};
+
 
 //*** Try load my geojson file here //
 	//as a baselayer i.e. tile wms
@@ -460,28 +457,19 @@ parks.then(function(data) {
 
 //Try load my geojson file here*** //
 
+var baseLayers = {
+  "Open Street Map": OSM,
+  "Aerial World Imagery":Aerial,
+  "Parks":parks
+};
+
 var overlayLayers = {
-  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
-  "<span id='osm'>parks</span>": parks
+  "<span id='layer-name'>GeoJSON Layer</span>": featureLayer
+  //,"<span id='osm'>parks</span>": parks
 };
 var layerControl = L.control.layers(baseLayers, overlayLayers, {
   collapsed: isCollapsed
 }).addTo(map);
-
-// Add to a grouped layer control as well
-    var options = {
-      // Make the "Landmarks" group exclusive (use radio inputs)
-      exclusiveGroups: featureLayer,
-      // Show a checkbox next to non-exclusive group labels for toggling all
-      groupCheckboxes: true
-    };
-
-    // Use the custom grouped layer control, not "L.control.layers"
-    var layerControl = L.control.groupedLayers(baseLayers, overlayLayers, options);
-    map.addControl(layerControl);
-   // End of switcher control.
-
-// end
 
 // Filter table to only show features in current map bounds
 map.on("moveend", function (e) {
