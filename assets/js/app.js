@@ -6,7 +6,7 @@ var config = {
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
-//6
+//7
 
 var properties = [{
   value: "fulcrum_id",
@@ -452,16 +452,13 @@ parks.then(function(data) {
 
 var baseLayers = {
   "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial,
-  "Parks":parks
+  "Aerial World Imagery":Aerial
+  //,"Parks":parks
 };
 
-//var home = L.marker([42.8160466667, -73.7989033333],{icon: null}).addTo(map).bindPopup('<b>Home</b>');
-//map.addLayer(home);
-
 var overlayLayers = {
-	"<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
-	"<span id='parks'>parks</span>": parks
+	"<span id='layer-name'>GeoJSON Layer</span>": featureLayer
+	//,"<span id='parks'>parks</span>": parks
 };
 
 var layerControl = L.control.layers(baseLayers, overlayLayers, {collapsed: isCollapsed}).addTo(map);
