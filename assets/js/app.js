@@ -6,7 +6,7 @@ var config = {
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
-//12
+//1
 
 var properties = [{
   value: "fulcrum_id",
@@ -469,15 +469,6 @@ var layerControl = L.control.layers(baseLayers, overlayLayers, {
 }).addTo(map);
 
 // Add to a grouped layer control as well
-	var groupedOverlays = {
-        "Reprensitives":{
-            "Senate":senate,
-            "Assembly":assembly,
-            "US House":congress
-        }
-
-    };
-
     var options = {
       // Make the "Landmarks" group exclusive (use radio inputs)
       exclusiveGroups: featureLayer,
