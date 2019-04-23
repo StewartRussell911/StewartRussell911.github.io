@@ -445,7 +445,7 @@ parks.then(function(data) {
 	parks = L.geoJson(data);
 	
 	//add immediately to map UI
-	//parks.addTo(map);
+	parks.addTo(map);
 });	
 
 //Try load my geojson file here*** //
