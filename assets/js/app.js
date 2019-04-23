@@ -6,7 +6,7 @@ var config = {
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
-//4
+//5
 
 var properties = [{
   value: "fulcrum_id",
