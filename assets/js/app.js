@@ -6,74 +6,7 @@ var config = {
   sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
-//9
-
-/*
-  # GEOJSON TILE LAYER  IN LEAFLET.JS
-	
-	The original idea for this gist comes from Koko A.'s post on leaflet-js google groups
-	(https://groups.google.com/forum/#!msg/leaflet-js/d7ur-evSz7Q/p_B4ea_0K1AJ)
-	Use it at your own peril (•
-	
-	## The basic concept
-	- setup the map and the tiles as usual
-	- respond to the "tileload" event with a function that loads the json file (that has the same name - z, x, y - as the tile)
-	- add the json data to the tile layer
-	- when zooming clear the tile layer (this allows for different json data on different zoom levels)
-*/
-
-// 1. Include all the LEAFLET FILES (css, js)
-// 2. Include jQuery (it simplifies the ajax request a great deal)
-
-
-// ADD THE TILE LAYER
-var pngTiles = new L.tileLayer( "https://stewartrussell911.github.io/{z}/{x}/{y}.png" , 
-  {
-    attribution: "Nice people at CloudMade/OSM/MapBox"
-  } ).addTo(map);
-
-
-// CREATE THE JSON LAYER AND ADD IT TO THE MAP
-// For now it will be empty
-// here you could define extra bits for it like styles and interactivity
-var jsonLayer = L.geoJson("./data/parks.geojson").addTo(map);
-
-// WHEN EACH TILE LOADS, LOAD THE CORRESPONDING JSON FILE
-pngTiles.on("tileload", function( event ){
-	// split the url (such as: http://yourserver.com/maps/lovelymap/6/34/22.png) at each "/"
-	// z is the third value (from the back) in the array
-	// x is the second one (from the back)
-	// y is the last one, 
-	// which we split at the "." so we get only the number, not the png
-	var title = event.url.split("/");
-	var z = title[title.length-3];
-	var x = title[title.length-2];
-	var y = title[title.length-1].split(".")[0];
-	
-	// Construct the json string out of the z, x and y
-	var jsonString = "https://stewartrussell911.github.io/" + z + "/" + x + "/" +  y + ".json";
-	//console.log( jsonString ); // print it if you want to check
-	
-	// Get jQuery to make the ajax request for the file
-	$.getJSON( jsonString, function(json){
-		// if there is json data, it will be loaded, otherwise we just get nothing
-		// Add this data to the jsonLayer
-		jsonLayer.addData(json);
-	} );
-	
-} );
-
-// SETUP THE "CLEAR" FUNCTION
-// When you zoom in/out you want the json layer to get cleared
-// and repopulated with new (relevant) json data
-// this means you can have different data for each layer
-map.on("zoomend", function(){
-	jsonLayer.clearLayers();
-});
-
-
-
-// Have Fun
+//10
 
 var properties = [{
   value: "fulcrum_id",
