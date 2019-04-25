@@ -1,28 +1,28 @@
 var config = {
-  geojson: "./data/park.geojson",
-  title: "Park Dashboard",
+  geojson: "./data/congress_park_trees.geojson",
+  title: "Park Trees > Dashboard",
   layerName: "Trees",
-  hoverProperty: "park",
-  sortProperty: "id",
+  hoverProperty: "species_sim",
+  sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
 //10
 
 var properties = [{
-  value: "id",
-  label: "ID",
+  value: "fulcrum_id",
+  label: "Fulcrum ID",
   table: {
     visible: false,
     sortable: true
   },
   filter: {
-    type: "integer"
+    type: "string"
   },
   info: false
 },
 {
-  value: "park",
-  label: "Park Name",
+  value: "status",
+  label: "Status",
   table: {
     visible: true,
     sortable: true
@@ -35,17 +35,115 @@ var properties = [{
     operators: ["in", "not_in", "equal", "not_equal"],
     values: []
   }
+},
+{
+  value: "congress_park_inventory_zone",
+  label: "Inventory Zone",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
+  }
+},
+{
+  value: "2012_inventory_number",
+  label: "Inventory Number",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "species_sim",
+  label: "Species",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "circumference_2012_inches_at_breast_height_",
+  label: "Circumference (inches)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "dbh_2012_inches_diameter_at_breast_height_46",
+  label: "DBH (inches)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "plaque",
+  label: "Plaque",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    input: "radio",
+    operators: ["equal"],
+    values: {
+      "yes": "Yes",
+      "no": "No"
+    }
+  }
+},
+{
+  value: "notes_other_information",
+  label: "Notes",
+  table: {
+    visible: false,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "photos_url",
+  label: "Photos",
+  table: {
+    visible: true,
+    sortable: true,
+    formatter: urlFormatter
+  },
+  filter: false
 }];
 
 function drawCharts() {
   // Status
   $(function() {
-    var result = alasql("SELECT park AS label, COUNT(*) AS total FROM ? GROUP BY park", [features]);
-    var columns = $.map(result, function(park) {
-      return [[park.label, park.total]];
+    var result = alasql("SELECT status AS label, COUNT(*) AS total FROM ? GROUP BY status", [features]);
+    var columns = $.map(result, function(status) {
+      return [[status.label, status.total]];
     });
     var chart = c3.generate({
-        bindto: "#parks-chart",
+        bindto: "#status-chart",
         data: {
           type: "pie",
           columns: columns
@@ -53,6 +151,71 @@ function drawCharts() {
     });
   });
 
+  // Zones
+  $(function() {
+    var result = alasql("SELECT congress_park_inventory_zone AS label, COUNT(*) AS total FROM ? GROUP BY congress_park_inventory_zone", [features]);
+    var columns = $.map(result, function(zone) {
+      return [[zone.label, zone.total]];
+    });
+    var chart = c3.generate({
+        bindto: "#zone-chart",
+        data: {
+          type: "pie",
+          columns: columns
+        }
+    });
+  });
+
+  // Size
+  $(function() {
+    var sizes = [];
+    var regeneration = alasql("SELECT 'Regeneration (< 3\")' AS category, COUNT(*) AS total FROM ? WHERE CAST(dbh_2012_inches_diameter_at_breast_height_46 as INT) < 3", [features]);
+    var sapling = alasql("SELECT 'Sapling/poles (1-9\")' AS category, COUNT(*) AS total FROM ? WHERE CAST(dbh_2012_inches_diameter_at_breast_height_46 as INT) BETWEEN 1 AND 9", [features]);
+    var small = alasql("SELECT 'Small trees (10-14\")' AS category, COUNT(*) AS total FROM ? WHERE CAST(dbh_2012_inches_diameter_at_breast_height_46 as INT) BETWEEN 10 AND 14", [features]);
+    var medium = alasql("SELECT 'Medium trees (15-19\")' AS category, COUNT(*) AS total FROM ? WHERE CAST(dbh_2012_inches_diameter_at_breast_height_46 as INT) BETWEEN 15 AND 19", [features]);
+    var large = alasql("SELECT 'Large trees (20-29\")' AS category, COUNT(*) AS total FROM ? WHERE CAST(dbh_2012_inches_diameter_at_breast_height_46 as INT) BETWEEN 20 AND 29", [features]);
+    var giant = alasql("SELECT 'Giant trees (> 29\")' AS category, COUNT(*) AS total FROM ? WHERE CAST(dbh_2012_inches_diameter_at_breast_height_46 as INT) > 29", [features]);
+    sizes.push(regeneration, sapling, small, medium, large, giant);
+    var columns = $.map(sizes, function(size) {
+      return [[size[0].category, size[0].total]];
+    });
+    var chart = c3.generate({
+        bindto: "#size-chart",
+        data: {
+          type: "pie",
+          columns: columns
+        }
+    });
+  });
+
+  // Species
+  $(function() {
+    var result = alasql("SELECT species_sim AS label, COUNT(*) AS total FROM ? GROUP BY species_sim ORDER BY label ASC", [features]);
+    var chart = c3.generate({
+        bindto: "#species-chart",
+        size: {
+          height: 2000
+        },
+        data: {
+          json: result,
+          keys: {
+            x: "label",
+            value: ["total"]
+          },
+          type: "bar"
+        },
+        axis: {
+          rotated: true,
+          x: {
+            type: "category"
+          }
+        },
+        legend: {
+          show: false
+        }
+    });
+  });
+}
 
 $(function() {
   $(".title").html(config.title);
@@ -162,7 +325,7 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
-    return L.Marker(latlng, {
+    return L.circleMarker(latlng, {
       radius: 5,
       color: "#FFF",
       weight: 2,
@@ -199,7 +362,7 @@ var featureLayer = L.geoJson(null, {
     } else {
       markerColor = "#FF0000";
     }
-    return L.Marker(latlng, {
+    return L.circleMarker(latlng, {
       radius: 4,
       weight: 2,
       fillColor: markerColor,
