@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-17",
+  title: "Park Trees > Dashboard 25-18",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -290,21 +290,7 @@ var featureLayer = L.geoJson(null, {
       color: feature.properties.color
     };
   },*/
-  pointToLayer: function (feature, latlng) {
-    if (feature.properties && feature.properties["marker-color"]) {
-      markerColor = feature.properties["marker-color"];
-    } else {
-      markerColor = "#FF0000";
-    }
-    return L.circleMarker(latlng, {
-      radius: 4,
-      weight: 2,
-      fillColor: markerColor,
-      color: markerColor,
-      opacity: 1,
-      fillOpacity: 1
-    });
-  },
+  
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
       layer.on({
