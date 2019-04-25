@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-3",
+  title: "Park Trees > Dashboard 25-4",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -93,12 +93,16 @@ function drawCharts() {
   // Zones
   $(function() {
     var result = alasql("SELECT congress_park_inventory_zone AS label, COUNT(*) AS total FROM ? GROUP BY congress_park_inventory_zone", [features]);
-    var columns = $.map(result, function(zone) {
-      return [[zone.label, zone.total]];
-    });
-    var chart = c3.generate({
+    
+	//shows the label on the hovering over of columns
+	//var columns = $.map(result, function(zone) {
+      //return [[zone.label, zone.total]];
+    //});
+    
+	var chart = c3.generate({
         bindto: "#zone-chart",
         data: {
+			//pie or bar
           type: "bar",
           columns: columns
         }
