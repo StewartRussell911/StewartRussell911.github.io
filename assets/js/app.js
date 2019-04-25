@@ -292,7 +292,7 @@ var featureLayer = L.geoJson(null, {
       color: feature.properties.color
     };
   },*/
-  
+	function style_road_inventory_0_0(feature) {
 			if (feature.properties['length_km'] >= 0.007000 && feature.properties['length_km'] <= 0.770600 ) {
                 return {
                 pane: 'pane_road_inventory_0',
