@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-7",
+  title: "Park Trees > Dashboard 25-8",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -250,8 +250,6 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
 });
 
-//STOPPED HERE ***
-
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, {
@@ -276,6 +274,7 @@ var highlightLayer = L.geoJson(null, {
   }
 });
 
+//STOPPED HERE ***
 var featureLayer = L.geoJson(null, {
   filter: function(feature, layer) {
     return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
@@ -380,13 +379,14 @@ parks.then(function(data) {
 
 var baseLayers = {
   "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial,
-  "Parks":parks
+  "Aerial World Imagery":Aerial
+  
+  //,"Parks":parks
 };
 
 var overlayLayers = {
-	"<span id='layer-name'>GeoJSON Layer</span>": featureLayer
-	//,"<span id='parks'>parks</span>": parks
+	"<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
+	"<span id='parks'>parks</span>": parks
 };
 
 var layerControl = L.control.layers(baseLayers, overlayLayers, {collapsed: isCollapsed}).addTo(map);
