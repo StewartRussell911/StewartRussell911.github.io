@@ -1,9 +1,9 @@
 var config = {
-  geojson: "./data/congress_park_trees.geojson",
+  geojson: "./data/parks.geojson",
   title: "Park Trees > Dashboard",
-  layerName: "Trees",
-  hoverProperty: "species_sim",
-  sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
+  layerName: "parks",
+  hoverProperty: "Park",
+  sortProperty: "id",
   sortOrder: "desc",
 };
 //10
@@ -323,29 +323,6 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
 });
 
-var highlightLayer = L.geoJson(null, {
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, {
-      radius: 5,
-      color: "#FFF",
-      weight: 2,
-      opacity: 1,
-      fillColor: "#00FFFF",
-      fillOpacity: 1,
-      clickable: false
-    });
-  },
-  style: function (feature) {
-    return {
-      color: "#00FFFF",
-      weight: 2,
-      opacity: 1,
-      fillColor: "#00FFFF",
-      fillOpacity: 0.5,
-      clickable: false
-    };
-  }
-});
 
 var featureLayer = L.geoJson(null, {
   filter: function(feature, layer) {
@@ -394,7 +371,7 @@ var featureLayer = L.geoJson(null, {
 });
 
 //get the parks layer from geojson file
-var parks = $.getJSON("./data/parks.geojson");
+//var parks = $.getJSON("./data/parks.geojson");
 
 // Fetch the GeoJSON file
 $.getJSON(config.geojson, function (data) {
@@ -408,7 +385,7 @@ $.getJSON(config.geojson, function (data) {
 });
 
 var map = L.map("map", {
-  layers: [OSM, featureLayer, highlightLayer, parks]
+  layers: [OSM, featureLayer, highlightLayer]
 }).fitWorld();
 
 // ESRI geocoder
