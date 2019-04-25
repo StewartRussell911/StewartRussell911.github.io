@@ -1,12 +1,12 @@
 var config = {
   geojson: "./data/parks.geojson",
-  title: "Park > Dashboard1",
+  title: "Park > Dashboard2",
   layerName: "parks",
   hoverProperty: "Park",
   sortProperty: "id",
   sortOrder: "desc",
 };
-//10
+//11
 
 var properties = [{
   value: "fulcrum_id",
