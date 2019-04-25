@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-10",
+  title: "Park Trees > Dashboard 25-11",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -249,6 +249,8 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap</a>',
             maxZoom: 18,
 });
+//*** Try load my geojson file here //
+var parks = $.getJSON("./data/parks.geojson"); parks.then(function(data) {parks = L.geoJson(data);	//parks.addTo(map);});
 
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
@@ -332,17 +334,9 @@ $.getJSON(config.geojson, function (data) {
   $("#loading-mask").hide();
 });
 
-//*** Try load my geojson file here //
-var parks = $.getJSON("./data/parks.geojson");
-parks.then(function(data) {
-	//get the parks as geojson
-	parks = L.geoJson(data);
-	//add immediately to map UI
-	//parks.addTo(map);
-});
-
 var map = L.map("map", {
-  layers: [OSM, featureLayer, parks, highlightLayer]
+  layers: [parks, featureLayer, highlightLayer]
+  //layers: [OSM, featureLayer, highlightLayer]
 }).fitWorld();
 
 // ESRI geocoder
@@ -387,7 +381,6 @@ var baseLayers = {
 
 var overlayLayers = {
 	"<span id='layer-name'>GeoJSON Layer</span>": featureLayer
-	//,"<span id='parks'>parks</span>": parks
 };
 
 var layerControl = L.control.layers(baseLayers, overlayLayers, {collapsed: isCollapsed}).addTo(map);
