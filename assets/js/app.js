@@ -1,7 +1,7 @@
 var config = {
   geojson: "./data/road_inventory1.geojson",
-  title: "Park Trees > Dashboard 25-27",
-  layerName: "Trees",
+  title: "RRAMS Viewer > 25-28",
+  layerName: "Road Inventory",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
   sortOrder: "asc",
