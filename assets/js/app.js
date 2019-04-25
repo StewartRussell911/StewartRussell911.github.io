@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-14",
+  title: "Park Trees > Dashboard 25-16",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -249,12 +249,16 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; ' + '<a href="https://openstreetmap.org">OpenStreetMap</a>',
             maxZoom: 18,
 });
-//*** Try load my geojson file here //
-var parks = $.getJSON("./data/parks.geojson"); 
-parks.then(function(data) {
-	parks = L.geoJson(data);	
-	//parks.addTo(map);
+//*** Try load my geojson file here // http://username:password@[ip_address]:8080/geoserver/ows?
+var parks = L.tileLayer.wms('http://SMEC:$smec100@[196.223.109.197]:6489/geoserver/wfs?', {
+				layers: 'Demarcation:local_municipalities_2016:Demarcation:local_municipalities_2016'
 });
+
+//var parks = $.getJSON("./data/parks.geojson"); 
+//parks.then(function(data) {
+//	parks = L.geoJson(data);	
+//	//parks.addTo(map);
+//});
 
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
