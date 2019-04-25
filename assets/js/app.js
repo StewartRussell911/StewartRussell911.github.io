@@ -6,7 +6,6 @@ var config = {
   sortProperty: "2012_inventory_number",
   sortOrder: "asc",
 };
-//1
 
 var properties = [{
   value: "fulcrum_id",
@@ -97,7 +96,7 @@ function drawCharts() {
 	//gen the columns
 	var columns = $.map(result, function(zone) {
 	//shows the label on the hovering over of columns
-      //return [[zone.label, zone.total]];
+      return [[zone.label, zone.total]];
     });
     
 	var chart = c3.generate({
