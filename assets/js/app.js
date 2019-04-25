@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-13",
+  title: "Park Trees > Dashboard 25-14",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -340,7 +340,6 @@ $.getJSON(config.geojson, function (data) {
 
 var map = L.map("map", {
   layers: [OSM, featureLayer, highlightLayer]
-  //layers: [OSM, featureLayer, highlightLayer]
 }).fitWorld();
 
 // ESRI geocoder
@@ -379,8 +378,8 @@ if (document.body.clientWidth <= 767) {
 
 var baseLayers = {
   "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial
-  //,"Parks":parks
+  "Aerial World Imagery":Aerial,
+  "Parks":parks
 };
 
 var overlayLayers = {
