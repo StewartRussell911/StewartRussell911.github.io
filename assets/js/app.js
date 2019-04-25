@@ -1,12 +1,13 @@
 var config = {
-  geojson: "./data/congress_park_trees.geojson",
-  pgeojson: "./data/parks.geojson",
-  title: "Park Trees > Dashboard 25-20",
+  geojson: "./data/parks.geojson",
+  title: "Park Trees > Dashboard 25-21",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
   sortOrder: "asc",
 };
+
+//geojson: "./data/congress_park_trees.geojson",
 
 var properties = [{
   value: "fulcrum_id",
@@ -234,8 +235,8 @@ function buildConfig() {
     }
   });
 
-  //buildFilters();
-  //buildTable();
+  buildFilters();
+  buildTable();
 }
 
 // Basemap Layers
@@ -332,7 +333,7 @@ var featureLayer = L.geoJson(null, {
 //STOPPED HERE ***
 
 // Fetch the GeoJSON file
-$.getJSON(config.pgeojson, function (data) {
+$.getJSON(config.geojson, function (data) {
   geojson = data;
   features = $.map(geojson.features, function(feature) {
     return feature.properties;
