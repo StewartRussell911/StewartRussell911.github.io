@@ -1,6 +1,6 @@
 var config = {
-  geojson: "./data/parks.geojson",
-  title: "Park Trees > Dashboard 25-21",
+  geojson: "./data/road_inventory.geojson",
+  title: "Park Trees > Dashboard 25-22",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -235,8 +235,8 @@ function buildConfig() {
     }
   });
 
-  buildFilters();
-  buildTable();
+  //buildFilters();
+  //buildTable();
 }
 
 // Basemap Layers
