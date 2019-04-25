@@ -1,6 +1,7 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-18",
+  pgeojson: "./data/parks.geojson",
+  title: "Park Trees > Dashboard 25-20",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -233,8 +234,8 @@ function buildConfig() {
     }
   });
 
-  buildFilters();
-  buildTable();
+  //buildFilters();
+  //buildTable();
 }
 
 // Basemap Layers
@@ -279,8 +280,7 @@ var highlightLayer = L.geoJson(null, {
     };
   }
 });
-
-//STOPPED HERE ***
+  
 var featureLayer = L.geoJson(null, {
   filter: function(feature, layer) {
     return feature.geometry.coordinates[0] !== 0 && feature.geometry.coordinates[1] !== 0;
@@ -290,6 +290,23 @@ var featureLayer = L.geoJson(null, {
       color: feature.properties.color
     };
   },*/
+  
+  //does the styling for each point feature
+  pointToLayer: function (feature, latlng) {
+    if (feature.properties && feature.properties["marker-color"]) {
+      markerColor = feature.properties["marker-color"];
+    } else {
+      markerColor = "#FF0000";
+    }
+    return L.circleMarker(latlng, {
+      radius: 4,
+      weight: 2,
+      fillColor: markerColor,
+      color: markerColor,
+      opacity: 1,
+      fillOpacity: 1
+    });
+  },
   
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
@@ -312,9 +329,10 @@ var featureLayer = L.geoJson(null, {
     }
   }
 });
+//STOPPED HERE ***
 
 // Fetch the GeoJSON file
-$.getJSON(config.geojson, function (data) {
+$.getJSON(config.pgeojson, function (data) {
   geojson = data;
   features = $.map(geojson.features, function(feature) {
     return feature.properties;
