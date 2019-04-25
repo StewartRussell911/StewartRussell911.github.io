@@ -1,12 +1,12 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard",
+  title: "Park Trees > Dashboard 1",
   layerName: "Trees",
-  hoverProperty: "species_sim",
-  sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
-  sortOrder: "desc",
+  hoverProperty: "fulcrum_id",
+  sortProperty: "congress_park_inventory_zone",
+  sortOrder: "asc",
 };
-//10
+//1
 
 var properties = [{
   value: "fulcrum_id",
