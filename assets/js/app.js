@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 2",
+  title: "Park Trees > Dashboard 25-3",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -99,7 +99,7 @@ function drawCharts() {
     var chart = c3.generate({
         bindto: "#zone-chart",
         data: {
-          type: "pie",
+          type: "bar",
           columns: columns
         }
     });
@@ -117,7 +117,7 @@ function drawCharts() {
     var chart = c3.generate({
         bindto: "#species-chart",
         size: {
-          height: 2000
+          height: 200
         },
         data: {
           json: result,
