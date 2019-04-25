@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-9",
+  title: "Park Trees > Dashboard 25-10",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -332,8 +332,17 @@ $.getJSON(config.geojson, function (data) {
   $("#loading-mask").hide();
 });
 
+//*** Try load my geojson file here //
+var parks = $.getJSON("./data/parks.geojson");
+parks.then(function(data) {
+	//get the parks as geojson
+	parks = L.geoJson(data);
+	//add immediately to map UI
+	//parks.addTo(map);
+});
+
 var map = L.map("map", {
-  layers: [OSM, featureLayer, highlightLayer]
+  layers: [OSM, featureLayer, parks, highlightLayer]
 }).fitWorld();
 
 // ESRI geocoder
@@ -366,27 +375,19 @@ if (document.body.clientWidth <= 767) {
 }
 
 
-//*** Try load my geojson file here //
-var parks = $.getJSON("./data/parks.geojson");
-parks.then(function(data) {
-	//get the parks as geojson
-	parks = L.geoJson(data);
-	//add immediately to map UI
-	//parks.addTo(map);
-});
+
 
 //Try load my geojson file here*** //
 
 var baseLayers = {
   "Open Street Map": OSM,
   "Aerial World Imagery":Aerial
-  
   //,"Parks":parks
 };
 
 var overlayLayers = {
-	"<span id='layer-name'>GeoJSON Layer</span>": featureLayer,
-	"<span id='parks'>parks</span>": parks
+	"<span id='layer-name'>GeoJSON Layer</span>": featureLayer
+	//,"<span id='parks'>parks</span>": parks
 };
 
 var layerControl = L.control.layers(baseLayers, overlayLayers, {collapsed: isCollapsed}).addTo(map);
