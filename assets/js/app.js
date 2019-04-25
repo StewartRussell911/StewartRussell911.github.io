@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/road_inventorty1.geojson",
-  title: "Park Trees > Dashboard 25-25",
+  title: "Park Trees > Dashboard 25-26",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -352,7 +352,8 @@ var featureLayer = L.geoJson(null, {
                 weight: 8.0,
                 fillOpacity: 0,
             }
-            },
+			}
+	},
   
   //does the styling for each point feature
   pointToLayer: function (feature, latlng) {
