@@ -1,6 +1,6 @@
 var config = {
-  geojson: "./data/road_inventorty1.geojson",
-  title: "Park Trees > Dashboard 25-26",
+  geojson: "./data/road_inventory1.geojson",
+  title: "Park Trees > Dashboard 25-27",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
