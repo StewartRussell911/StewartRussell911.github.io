@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/road_inventorty1.geojson",
-  title: "Park Trees > Dashboard 25-24",
+  title: "Park Trees > Dashboard 25-25",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -292,7 +292,7 @@ var featureLayer = L.geoJson(null, {
       color: feature.properties.color
     };
   },*/
-	function style_road_inventory_0_0(feature) {
+	style_road_inventory_0_0(feature) {
 			if (feature.properties['length_km'] >= 0.007000 && feature.properties['length_km'] <= 0.770600 ) {
                 return {
                 pane: 'pane_road_inventory_0',
