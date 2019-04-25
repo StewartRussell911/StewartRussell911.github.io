@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-8",
+  title: "Park Trees > Dashboard 25-9",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -372,7 +372,7 @@ parks.then(function(data) {
 	//get the parks as geojson
 	parks = L.geoJson(data);
 	//add immediately to map UI
-	parks.addTo(map);
+	//parks.addTo(map);
 });
 
 //Try load my geojson file here*** //
