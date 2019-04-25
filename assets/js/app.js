@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 1",
+  title: "Park Trees > Dashboard 2",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -18,7 +18,7 @@ var properties = [{
   filter: {
     type: "string"
   },
-  info: false
+  info: true
 },
 {
   value: "status",
@@ -109,22 +109,11 @@ function drawCharts() {
   $(function() {
     var sizes = [];
     //removed
-    sizes.push(regeneration, sapling, small, medium, large, giant);
-    var columns = $.map(sizes, function(size) {
-      return [[size[0].category, size[0].total]];
-    });
-    var chart = c3.generate({
-        bindto: "#size-chart",
-        data: {
-          type: "pie",
-          columns: columns
-        }
-    });
   });
 
   // Species
   $(function() {
-    var result = alasql("SELECT congress_park_inventory_zone AS label, COUNT(*) AS total FROM ? GROUP BY congress_park_inventory_zone ORDER BY label ASC", [features]);
+    var result = alasql("SELECT status AS label, COUNT(*) AS total FROM ? GROUP BY status ORDER BY label ASC", [features]);
     var chart = c3.generate({
         bindto: "#species-chart",
         size: {
