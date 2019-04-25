@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/parks.geojson",
-  title: "Park > Dashboard",
+  title: "Park > Dashboard1",
   layerName: "parks",
   hoverProperty: "Park",
   sortProperty: "id",
@@ -419,20 +419,20 @@ if (document.body.clientWidth <= 767) {
 
 
 //*** Try load my geojson file here //
-var parks = $.getJSON("./data/parks.geojson");
-parks.then(function(data) {
+//var parks = $.getJSON("./data/parks.geojson");
+//parks.then(function(data) {
 	//get the parks as geojson
-	parks = L.geoJson(data);
+	//parks = L.geoJson(data);
 	//add immediately to map UI
 	//parks.addTo(map);
-});
+//});
 
 //Try load my geojson file here*** //
 
 var baseLayers = {
   "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial,
-  "Parks":parks
+  "Aerial World Imagery":Aerial
+  //,"Parks":parks
 };
 
 var overlayLayers = {
