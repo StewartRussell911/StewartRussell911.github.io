@@ -393,6 +393,9 @@ var featureLayer = L.geoJson(null, {
   }
 });
 
+//get the parks layer from geojson file
+var parks = $.getJSON("./data/parks.geojson");
+
 // Fetch the GeoJSON file
 $.getJSON(config.geojson, function (data) {
   geojson = data;
@@ -405,7 +408,7 @@ $.getJSON(config.geojson, function (data) {
 });
 
 var map = L.map("map", {
-  layers: [OSM, featureLayer, highlightLayer]
+  layers: [OSM, featureLayer, highlightLayer, parks]
 }).fitWorld();
 
 // ESRI geocoder
@@ -444,7 +447,7 @@ parks.then(function(data) {
 	//get the parks as geojson
 	parks = L.geoJson(data);
 	//add immediately to map UI
-	parks.addTo(map);
+	//parks.addTo(map);
 });
 
 //Try load my geojson file here*** //
