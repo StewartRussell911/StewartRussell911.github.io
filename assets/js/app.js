@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/congress_park_trees.geojson",
-  title: "Park Trees > Dashboard 25-12",
+  title: "Park Trees > Dashboard 25-13",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
@@ -339,7 +339,7 @@ $.getJSON(config.geojson, function (data) {
 });
 
 var map = L.map("map", {
-  layers: [parks, featureLayer, highlightLayer]
+  layers: [OSM, featureLayer, highlightLayer]
   //layers: [OSM, featureLayer, highlightLayer]
 }).fitWorld();
 
