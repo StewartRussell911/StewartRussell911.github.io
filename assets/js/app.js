@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/parks.geojson",
-  title: "Park Trees > Dashboard",
+  title: "Park > Dashboard",
   layerName: "parks",
   hoverProperty: "Park",
   sortProperty: "id",
