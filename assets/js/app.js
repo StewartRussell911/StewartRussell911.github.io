@@ -1,12 +1,12 @@
 var config = {
-  geojson: "./data/parks.geojson",
-  title: "Park > Dashboard2",
-  layerName: "parks",
-  hoverProperty: "Park",
-  sortProperty: "id",
+  geojson: "./data/congress_park_trees.geojson",
+  title: "Park Trees > Dashboard",
+  layerName: "Trees",
+  hoverProperty: "species_sim",
+  sortProperty: "dbh_2012_inches_diameter_at_breast_height_46",
   sortOrder: "desc",
 };
-//11
+//10
 
 var properties = [{
   value: "fulcrum_id",
@@ -393,9 +393,6 @@ var featureLayer = L.geoJson(null, {
   }
 });
 
-//get the parks layer from geojson file
-//var parks = $.getJSON("./data/parks.geojson");
-
 // Fetch the GeoJSON file
 $.getJSON(config.geojson, function (data) {
   geojson = data;
@@ -442,20 +439,20 @@ if (document.body.clientWidth <= 767) {
 
 
 //*** Try load my geojson file here //
-//var parks = $.getJSON("./data/parks.geojson");
-//parks.then(function(data) {
+var parks = $.getJSON("./data/parks.geojson");
+parks.then(function(data) {
 	//get the parks as geojson
-	//parks = L.geoJson(data);
+	parks = L.geoJson(data);
 	//add immediately to map UI
-	//parks.addTo(map);
-//});
+	parks.addTo(map);
+});
 
 //Try load my geojson file here*** //
 
 var baseLayers = {
   "Open Street Map": OSM,
-  "Aerial World Imagery":Aerial
-  //,"Parks":parks
+  "Aerial World Imagery":Aerial,
+  "Parks":parks
 };
 
 var overlayLayers = {
