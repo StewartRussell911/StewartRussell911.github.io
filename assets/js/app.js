@@ -1,12 +1,11 @@
 var config = {
-  geojson: "./data/road_inventory.geojson",
-  title: "Park Trees > Dashboard 25-22",
+  geojson: "./data/road_inventorty1.geojson",
+  title: "Park Trees > Dashboard 25-24",
   layerName: "Trees",
   hoverProperty: "fulcrum_id",
   sortProperty: "2012_inventory_number",
   sortOrder: "asc",
 };
-
 //geojson: "./data/congress_park_trees.geojson",
 
 var properties = [{
@@ -235,8 +234,10 @@ function buildConfig() {
     }
   });
 
+  //*** TO REMOVE ***
   //buildFilters();
   //buildTable();
+  //*** TO REMOVE ***
 }
 
 // Basemap Layers
@@ -291,6 +292,67 @@ var featureLayer = L.geoJson(null, {
       color: feature.properties.color
     };
   },*/
+  
+			if (feature.properties['length_km'] >= 0.007000 && feature.properties['length_km'] <= 0.770600 ) {
+                return {
+                pane: 'pane_road_inventory_0',
+                opacity: 1,
+                color: 'rgba(218,54,63,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1,
+                fillOpacity: 0,
+            }
+            }
+            if (feature.properties['length_km'] >= 0.770600 && feature.properties['length_km'] <= 1.534200 ) {
+                return {
+                pane: 'pane_road_inventory_0',
+                opacity: 1,
+                color: 'rgba(218,54,63,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+            }
+            }
+            if (feature.properties['length_km'] >= 1.534200 && feature.properties['length_km'] <= 2.297800 ) {
+                return {
+                pane: 'pane_road_inventory_0',
+                opacity: 1,
+                color: 'rgba(218,54,63,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+            }
+            }
+            if (feature.properties['length_km'] >= 2.297800 && feature.properties['length_km'] <= 3.061400 ) {
+                return {
+                pane: 'pane_road_inventory_0',
+                opacity: 1,
+                color: 'rgba(218,54,63,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+            }
+            }
+            if (feature.properties['length_km'] >= 3.061400 && feature.properties['length_km'] <= 3.825000 ) {
+                return {
+                pane: 'pane_road_inventory_0',
+                opacity: 1,
+                color: 'rgba(218,54,63,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 8.0,
+                fillOpacity: 0,
+            }
+            },
   
   //does the styling for each point feature
   pointToLayer: function (feature, latlng) {
