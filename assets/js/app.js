@@ -1,6 +1,6 @@
 var config = {
-  geojson: "./data/road_inventory1.geojson",
-  title: "RRAMS Viewer > 25-30",
+  geojson: "./data/road_inventory_type0.geojson",
+  title: "RRAMS Viewer > 25-31",
   layerName: "Road Inventory",
   hoverProperty: "road_link",
   sortProperty: "road_link",
@@ -77,14 +77,92 @@ var properties = [{
   }
 },
 {
-  value: "photos_url",
-  label: "Photos",
+  value: "num_lanes",
+  label: "No. Lanes",
   table: {
     visible: true,
-    sortable: true,
-    formatter: urlFormatter
+    sortable: true
   },
-  filter: false
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "lane_width",
+  label: "Lane Width (m)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "road_width",
+  label: "Road Width (m)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "paved_width",
+  label: "Paved Width (m)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "asset_type",
+  label: "Asset Type",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "linklength",
+  label: "Length (m)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "gen_cond_rating",
+  label: "GCI",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "custodiam",
+  label: "Custodian",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
 }];
 
 function drawCharts() {
