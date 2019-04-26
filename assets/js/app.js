@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/road_inventory_type0.geojson",
-  title: "RRAMS Viewer > 25-32",
+  title: "RRAMS Viewer > 25-33",
   layerName: "Road Inventory",
   hoverProperty: "road_link",
   sortProperty: "road_link",
@@ -110,17 +110,6 @@ var properties = [{
   }
 },
 {
-  value: "paved_width",
-  label: "Paved Width (m)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer"
-  }
-},
-{
   value: "asset_type",
   label: "Asset Type",
   table: {
@@ -134,17 +123,6 @@ var properties = [{
     multiple: true,
     operators: ["greater_than", "equal", "not_equal", "less_than"],
     values: []
-  }
-},
-{
-  value: "linklength",
-  label: "Length (m)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer"
   }
 },
 {
@@ -183,7 +161,7 @@ var properties = [{
 function drawCharts() {
   // Status - Custodian
   $(function() {
-    var result = alasql("SELECT custodian AS label, SUM(*) AS total FROM ? GROUP BY custodian", [features]);
+    var result = alasql("SELECT custodian AS label, Count(*) AS total FROM ? GROUP BY custodian", [features]);
     var columns = $.map(result, function(status) {
       return [[status.label, status.total]];
     });
@@ -198,7 +176,7 @@ function drawCharts() {
 
   // Zones - Type
   $(function() {
-    var result = alasql("SELECT asset_type AS label, SUM(*) AS total FROM ? GROUP BY asset_type", [features]);
+    var result = alasql("SELECT asset_type AS label, Count(*) AS total FROM ? GROUP BY asset_type", [features]);
     
 	//gen the columns
 	var columns = $.map(result, function(zone) {
@@ -219,12 +197,12 @@ function drawCharts() {
   // Size - Type
   $(function() {
     var sizes = [];
-    var flex = alasql("SELECT 'Flexible' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 65", [features]);
-    var block = alasql("SELECT 'Block' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 62", [features]);
-	var conc = alasql("SELECT 'Concrete' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 64", [features]);
-	var gravel = alasql("SELECT 'Gravel' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 59", [features]);
-	var earth = alasql("SELECT 'Earth' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 57", [features]);
-	var track = alasql("SELECT 'Track' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 69", [features]);
+    var flex = alasql("SELECT 'Flexible' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 65", [features]);
+    var block = alasql("SELECT 'Block' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 62", [features]);
+	var conc = alasql("SELECT 'Concrete' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 64", [features]);
+	var gravel = alasql("SELECT 'Gravel' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 59", [features]);
+	var earth = alasql("SELECT 'Earth' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 57", [features]);
+	var track = alasql("SELECT 'Track' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 69", [features]);
     sizes.push(flex, block, conc, gravel, earth, track);
     var columns = $.map(sizes, function(size) {
       return [[size[0].category, size[0].total]];
@@ -240,7 +218,7 @@ function drawCharts() {
 
   // Species - condition
   $(function() {
-    var result = alasql("SELECT gen_cond_rating AS label, SUM(*) AS total FROM ? GROUP BY gen_cond_rating ORDER BY label ASC", [features]);
+    var result = alasql("SELECT gen_cond_rating AS label, Count(*) AS total FROM ? GROUP BY gen_cond_rating ORDER BY label ASC", [features]);
     var chart = c3.generate({
         bindto: "#species-chart",
         size: {
