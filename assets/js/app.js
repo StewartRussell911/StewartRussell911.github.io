@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/road_inventory_type0.geojson",
-  title: "RRAMS Viewer > 25-31",
+  title: "RRAMS Viewer > 25-32",
   layerName: "Road Inventory",
   hoverProperty: "road_link",
   sortProperty: "road_link",
@@ -30,7 +30,7 @@ var properties = [{
   filter: {
     type: "integer"
   },
-  info: true
+  info: false
 },
 {
   value: "road_link",
@@ -66,7 +66,7 @@ var properties = [{
   }
 },
 {
-  value: "Length_km",
+  value: "length_km",
   label: "Length (km)",
   table: {
     visible: true,
@@ -128,7 +128,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "integer"
+    type: "integer",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["greater_than", "equal", "not_equal", "less_than"],
+    values: []
   }
 },
 {
@@ -150,25 +155,35 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
-  value: "custodiam",
-  label: "Custodian",
+  value: "custodian",
+  label: "Custodian/Type",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 }];
 
 function drawCharts() {
-  // Status
+  // Status - Custodian
   $(function() {
-    var result = alasql("SELECT status AS label, COUNT(*) AS total FROM ? GROUP BY status", [features]);
+    var result = alasql("SELECT custodian AS label, SUM(*) AS total FROM ? GROUP BY custodian", [features]);
     var columns = $.map(result, function(status) {
       return [[status.label, status.total]];
     });
@@ -181,9 +196,9 @@ function drawCharts() {
     });
   });
 
-  // Zones
+  // Zones - Type
   $(function() {
-    var result = alasql("SELECT congress_park_inventory_zone AS label, COUNT(*) AS total FROM ? GROUP BY congress_park_inventory_zone", [features]);
+    var result = alasql("SELECT asset_type AS label, SUM(*) AS total FROM ? GROUP BY asset_type", [features]);
     
 	//gen the columns
 	var columns = $.map(result, function(zone) {
@@ -201,15 +216,31 @@ function drawCharts() {
     });
   });
 
-  // Size
+  // Size - Type
   $(function() {
     var sizes = [];
-    //removed
+    var flex = alasql("SELECT 'Flexible' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 65", [features]);
+    var block = alasql("SELECT 'Block' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 62", [features]);
+	var conc = alasql("SELECT 'Concrete' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 64", [features]);
+	var gravel = alasql("SELECT 'Gravel' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 59", [features]);
+	var earth = alasql("SELECT 'Earth' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 57", [features]);
+	var track = alasql("SELECT 'Track' AS category, SUM(*) AS total FROM ? WHERE CAST(asset_type as INT) = 69", [features]);
+    sizes.push(flex, block, conc, gravel, earth, track);
+    var columns = $.map(sizes, function(size) {
+      return [[size[0].category, size[0].total]];
+    });
+    var chart = c3.generate({
+        bindto: "#size-chart",
+        data: {
+          type: "pie",
+          columns: columns
+        }
+    });
   });
 
-  // Species
+  // Species - condition
   $(function() {
-    var result = alasql("SELECT status AS label, COUNT(*) AS total FROM ? GROUP BY status ORDER BY label ASC", [features]);
+    var result = alasql("SELECT gen_cond_rating AS label, SUM(*) AS total FROM ? GROUP BY gen_cond_rating ORDER BY label ASC", [features]);
     var chart = c3.generate({
         bindto: "#species-chart",
         size: {
