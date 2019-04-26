@@ -1,28 +1,39 @@
 var config = {
   geojson: "./data/road_inventory1.geojson",
-  title: "RRAMS Viewer > 25-28",
+  title: "RRAMS Viewer > 25-29",
   layerName: "Road Inventory",
-  hoverProperty: "fulcrum_id",
-  sortProperty: "2012_inventory_number",
+  hoverProperty: "road_link",
+  sortProperty: "road_link",
   sortOrder: "asc",
 };
 //geojson: "./data/congress_park_trees.geojson",
 
 var properties = [{
-  value: "fulcrum_id",
-  label: "Fulcrum ID",
+  value: "id",
+  label: "ID",
   table: {
     visible: false,
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "integer"
+  },
+  info: true
+},
+  value: "gid",
+  label: "Global ID",
+  table: {
+    visible: false,
+    sortable: false
+  },
+  filter: {
+    type: "integer"
   },
   info: true
 },
 {
-  value: "status",
-  label: "Status",
+  value: "road_link",
+  label: "Road Link",
   table: {
     visible: true,
     sortable: true
@@ -37,24 +48,30 @@ var properties = [{
   }
 },
 {
-  value: "congress_park_inventory_zone",
-  label: "Inventory Zone",
+  value: "fromkm",
+  label: "From Km",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
-    type: "string",
-    input: "checkbox",
-    vertical: true,
-    multiple: true,
-    operators: ["in", "not_in", "equal", "not_equal"],
-    values: []
+    type: "integer"
   }
 },
 {
-  value: "2012_inventory_number",
-  label: "Inventory Number",
+  value: "tokm",
+  label: "To Km",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "Length_km",
+  label: "Length (km)",
   table: {
     visible: true,
     sortable: true
@@ -235,8 +252,8 @@ function buildConfig() {
   });
 
   //*** TO REMOVE ***
-  //buildFilters();
-  //buildTable();
+  buildFilters();
+  buildTable();
   //*** TO REMOVE ***
 }
 
@@ -331,7 +348,7 @@ var featureLayer = L.geoJson(null, {
     }
   }
 });
-//STOPPED HERE ***
+
 
 // Fetch the GeoJSON file
 $.getJSON(config.geojson, function (data) {
@@ -347,6 +364,8 @@ $.getJSON(config.geojson, function (data) {
 var map = L.map("map", {
   layers: [OSM, featureLayer, highlightLayer]
 }).fitWorld();
+//.fitBounds(map.getBound());
+//.fitWorld();
 
 // ESRI geocoder
 var searchControl = L.esri.Geocoding.Controls.geosearch({
