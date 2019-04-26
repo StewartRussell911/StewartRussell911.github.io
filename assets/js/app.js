@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/road_inventory1.geojson",
-  title: "RRAMS Viewer > 25-29",
+  title: "RRAMS Viewer > 25-30",
   layerName: "Road Inventory",
   hoverProperty: "road_link",
   sortProperty: "road_link",
@@ -20,6 +20,7 @@ var properties = [{
   },
   info: true
 },
+{
   value: "gid",
   label: "Global ID",
   table: {
