@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/road_inventory_type0.geojson",
-  title: "RRAMS Viewer > 25-33",
+  title: "RRAMS Viewer > 29-01",
   layerName: "Road Inventory",
   hoverProperty: "road_link",
   sortProperty: "road_link",
@@ -159,7 +159,7 @@ var properties = [{
 }];
 
 function drawCharts() {
-  // Status - Custodian
+  // Custodian
   $(function() {
     var result = alasql("SELECT custodian AS label, Count(*) AS total FROM ? GROUP BY custodian", [features]);
     var columns = $.map(result, function(status) {
@@ -174,7 +174,7 @@ function drawCharts() {
     });
   });
 
-  // Zones - Type
+  // Asset Type
   $(function() {
     var result = alasql("SELECT asset_type AS label, Count(*) AS total FROM ? GROUP BY asset_type", [features]);
     
@@ -194,7 +194,7 @@ function drawCharts() {
     });
   });
 
-  // Size - Type
+  // Road Type
   $(function() {
     var sizes = [];
     var flex = alasql("SELECT 'Flexible' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 65", [features]);
@@ -216,7 +216,7 @@ function drawCharts() {
     });
   });
 
-  // Species - condition
+  // Condition
   $(function() {
     var result = alasql("SELECT gen_cond_rating AS label, Count(*) AS total FROM ? GROUP BY gen_cond_rating ORDER BY label ASC", [features]);
     var chart = c3.generate({
@@ -284,8 +284,6 @@ function buildConfig() {
     }
   }];
 
-
-
   $.each(properties, function(index, value) {
     // Filter config
     if (value.filter) {
@@ -334,10 +332,8 @@ function buildConfig() {
     }
   });
 
-  //*** TO REMOVE ***
   buildFilters();
   buildTable();
-  //*** TO REMOVE ***
 }
 
 // Basemap Layers
@@ -358,7 +354,7 @@ var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //				layers: 'Demarcation:local_municipalities_2016:Demarcation:local_municipalities_2016'
 //});
 
-
+// *** ARGH TO FIGURE OUT STYLING ***
 var highlightLayer = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.circleMarker(latlng, {
@@ -431,7 +427,7 @@ var featureLayer = L.geoJson(null, {
     }
   }
 });
-
+// *** ARGH TO FIGURE OUT STYLING ***
 
 // Fetch the GeoJSON file
 $.getJSON(config.geojson, function (data) {
@@ -447,8 +443,7 @@ $.getJSON(config.geojson, function (data) {
 var map = L.map("map", {
   layers: [OSM, featureLayer, highlightLayer]
 }).fitWorld();
-//.fitBounds(map.getBound());
-//.fitWorld();
+
 
 // ESRI geocoder
 var searchControl = L.esri.Geocoding.Controls.geosearch({
@@ -481,7 +476,6 @@ if (document.body.clientWidth <= 767) {
 
 
 //Try load my geojson file here*** //
-
 //var parks = $.getJSON("./data/parks.geojson"); 
 //parks.then(function(data) {
 //	parks = L.geoJson(data);	

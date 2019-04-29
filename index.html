@@ -7,9 +7,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="RRAMS viewer configured by smec south africa">
     <meta name="author" content="Bryan McBride">
-    <title class="title">My PARKS Dashboard</title>
+    <title class="title">RRAMS Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
@@ -27,7 +27,6 @@
   </head>
 
   <body>
-
     <div id="loading-mask" class="modal-backdrop">
       <div class="loading-indicator">
         <div class="progress progress-striped active">
@@ -44,7 +43,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <span class="navbar-brand title">My PARKS Dashboard</span>
+          <span class="navbar-brand title">RRAMS Dashboard</span>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -67,7 +66,6 @@
     <div id="map-container">
       <div id="map"></div>
     </div>
-
     <div id="table-container">
       <div id="toolbar" style="width: 400px;">
         <div class="btn-group" role="group">
@@ -95,7 +93,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Welcome to the GeoJSON Data Dashboard!</h4>
+            <h4 class="modal-title">Welcome to the GeoJSON RRAMS Data Dashboard!</h4>
           </div>
           <div class="modal-body">
             <ul class="nav nav-tabs" id="aboutTabs">
@@ -154,10 +152,10 @@
           <div class="modal-body" style="overflow: auto;">
             <div role="tabpanel">
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#status-chart" aria-controls="reports" role="tab" data-toggle="tab">Status</a></li>
-                <li role="presentation"><a href="#zone-chart" aria-controls="charts" role="tab" data-toggle="tab">Inventory Zone</a></li>
-                <li role="presentation"><a href="#size-chart" aria-controls="charts" role="tab" data-toggle="tab">Size</a></li>
-                <li role="presentation"><a href="#species-chart" aria-controls="charts" role="tab" data-toggle="tab">Species</a></li>
+                <li role="presentation" class="active"><a href="#status-chart" aria-controls="reports" role="tab" data-toggle="tab">Custodians</a></li>
+                <li role="presentation"><a href="#zone-chart" aria-controls="charts" role="tab" data-toggle="tab">Asset Types</a></li>
+                <li role="presentation"><a href="#size-chart" aria-controls="charts" role="tab" data-toggle="tab">Road Types</a></li>
+                <li role="presentation"><a href="#species-chart" aria-controls="charts" role="tab" data-toggle="tab">Condition</a></li>
               </ul>
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="status-chart"></div>
@@ -207,7 +205,6 @@
         </div>
       </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -223,9 +220,6 @@
     <script src="assets/vendor/tableExport/libs/html2canvas/html2canvas.min.js"></script>
     <script src="assets/vendor/tableExport/libs/jsPDF/jspdf.min.js"></script>
     <script src="assets/vendor/tableExport/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
-   
-   
-   
    <script src="assets/js/app.js"></script>
   </body>
 </html>
