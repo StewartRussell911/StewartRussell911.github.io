@@ -315,7 +315,6 @@ var properties = [{
     type: "integer"
   }
 },
-
 {
   value: "marker-col",
   label: "Marker Colour",
@@ -325,7 +324,8 @@ var properties = [{
   },
   filter: {
     type: "string",
-  },
+  }
+},
 {
   value: "Doc_URL",
   label: "Document URL",
