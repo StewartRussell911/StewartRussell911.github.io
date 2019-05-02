@@ -99,7 +99,7 @@ var properties = [{
   }
 },
 {
-  value: "Road Type",
+  value: "Road_Type",
   label: "Road Type",
   table: {
     visible: true,
@@ -310,7 +310,7 @@ var properties = [{
 function drawCharts() {
   // Custodian
   $(function() {
-    var result = alasql("SELECT custodian AS label, Count(*) AS total FROM ? GROUP BY custodian", [features]);
+    var result = alasql("SELECT custodian AS label, SUM(length_km) AS total FROM ? GROUP BY custodian", [features]);
     var columns = $.map(result, function(status) {
       return [[status.label, status.total]];
     });
@@ -325,7 +325,7 @@ function drawCharts() {
 
   // Functional
   $(function() {
-    var result = alasql("SELECT Functional AS label, Count(*) AS total FROM ? GROUP BY Functional", [features]);
+    var result = alasql("SELECT Functional AS label, SUM(length_km) AS total FROM ? GROUP BY Functional", [features]);
     
 	//gen the columns
 	var columns = $.map(result, function(zone) {
@@ -346,13 +346,12 @@ function drawCharts() {
   // Road Type
   $(function() {
     var sizes = [];
-    var flex = alasql("SELECT 'Flexible' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 65", [features]);
-    var block = alasql("SELECT 'Block' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 62", [features]);
-	var conc = alasql("SELECT 'Concrete' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 64", [features]);
-	var gravel = alasql("SELECT 'Gravel' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 59", [features]);
-	var earth = alasql("SELECT 'Earth' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 57", [features]);
-	var track = alasql("SELECT 'Track' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 69", [features]);
-    sizes.push(flex, block, conc, gravel, earth, track);
+    var dual = alasql("SELECT 'Road - Dual c/way' AS category, Count(*) AS total FROM ? WHERE Road_Type = 'Road - Dual c/way'", [features]);
+	var flex = alasql("SELECT 'Road - Paved - Flexible' AS category, Count(*) AS total FROM ? WHERE Road_Type = 'Road - Paved - Flexible'", [features]);
+    var block = alasql("SELECT 'Road - Paved - Block' AS category, Count(*) AS total FROM ? WHERE Road_Type = 'Road - Paved - Block'", [features]);
+	var conc = alasql("SELECT 'Road - Paved - Concrete' AS category, Count(*) AS total FROM ? WHERE Road Type = 'Road - Paved - Concrete'", [features]);
+	var gravel = alasql("SELECT 'Road - Gravel' AS category, Count(*) AS total FROM ? WHERE Road Type = 'Road - Gravel'", [features]);
+    sizes.push(dual, flex, block, conc, gravel);
     var columns = $.map(sizes, function(size) {
       return [[size[0].category, size[0].total]];
     });
@@ -367,7 +366,7 @@ function drawCharts() {
 
   // Condition
   $(function() {
-    var result = alasql("SELECT vci_rating AS label, Count(*) AS total FROM ? GROUP BY vci_rating ORDER BY label ASC", [features]);
+    var result = alasql("SELECT vci_rating AS label, SUM(length_km) AS total FROM ? GROUP BY vci_rating ORDER BY label ASC", [features]);
     var chart = c3.generate({
         bindto: "#species-chart",
         size: {
