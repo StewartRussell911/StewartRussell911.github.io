@@ -1,6 +1,6 @@
 {
 "type": "FeatureCollection",
-"name": "CA",
+"name": "ca",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "id": 7657, "gid": 7654, "road_link": "Pool Street _010", "fromkm": 0.0, "tokm": 0.167, "length_km": 0.167, "fromlink": "Cul de Sac", "tolink": "Skool Street", "Road_Type": "Road - Paved - Flexible", "Functional": "Collector", "sp_name": "Agulhas SP", "mp_name": "Agulhas", "Municipali": "Cape Agulhas", "rainfall": null, "one_way": "no", "sidewtype": "Sidewalk - None", "sidewalk_p": 0, "kerb_pe": 20, "num_lanes": 2, "lane_width": 2.7, "road_width": 5.4, "paved_widt": 5.4, "storm_chan": null, "linklength": 166.568, "vci_rating": "2 - Good", "cond_year": 2017, "custodian": "DM" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 20.010009951, -34.825417353 ], [ 20.010871107, -34.824094446 ] ] ] } },
