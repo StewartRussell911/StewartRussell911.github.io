@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/oberg_inventory.geojson",
-  title: "RRAMS Viewer > 05-04",
+  title: "RRAMS Viewer > 05-05",
   layerName: "Road Inventory",
   hoverProperty: "road_link",
   sortProperty: "road_link",
@@ -394,8 +394,8 @@ function drawCharts() {
     var dual = alasql("SELECT 'Dual c/way' AS category, Count(*) AS total FROM ? WHERE (Road_Type = 'Road - Dual c/way')", [features]);
 	var flex = alasql("SELECT 'Paved - Flexible' AS category, Count(*) AS total FROM ? WHERE (Road_Type = 'Road - Paved - Flexible')", [features]);
     var block = alasql("SELECT 'Block' AS category, Count(*) AS total FROM ? WHERE (Road_Type = 'Road - Paved - Block')", [features]);
-	var conc = alasql("SELECT 'Paved - Concrete' AS category, Count(*) AS total FROM ? WHERE (Road Type = 'Road - Paved - Concrete')", [features]);
-	var gravel = alasql("SELECT 'Gravel' AS category, Count(*) AS total FROM ? WHERE (Road Type = 'Road - Gravel')", [features]);
+	var conc = alasql("SELECT 'Paved - Concrete' AS category, Count(*) AS total FROM ? WHERE (Road_Type = 'Road - Paved - Concrete')", [features]);
+	var gravel = alasql("SELECT 'Gravel' AS category, Count(*) AS total FROM ? WHERE (Road_Type = 'Road - Gravel')", [features]);
     sizes.push(dual, flex, block, conc, gravel);
     var columns = $.map(sizes, function(size) {
       return [[size[0].category, size[0].total]];
