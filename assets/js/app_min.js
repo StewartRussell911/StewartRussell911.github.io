@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/oberg_inventory_min.geojson",
-  title: "RRAMS Viewer > 05-09",
+  title: "RRAMS Viewer > 05-10",
   layerName: "Overberg DM Roads",
   hoverProperty: "road_link",
   sortProperty: "id",
@@ -142,6 +142,7 @@ var properties = [{
   },
   filter: {
     type: "integer"
+}
 },
 {
   value: "road_width",
