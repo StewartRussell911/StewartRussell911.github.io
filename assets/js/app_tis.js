@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Counts 3",
+  title: "RRAMS Viewer > Counts 4",
   layerName: "Overberg DM Counts",
   hoverProperty: "tcname",
   sortProperty: "count_date",
@@ -93,22 +93,6 @@ var properties = [{
   }
 },
 {
-  value: "oberg_inventory_custodian",
-  label: "Custodian",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    input: "checkbox",
-    vertical: true,
-    multiple: true,
-    operators: ["in", "not_in", "equal", "not_equal"],
-    values: []
-  }
-},
-{
   value: "count_ty_1",
   label: "Count Type",
   table: {
@@ -138,17 +122,6 @@ var properties = [{
     multiple: true,
     operators: ["in", "not_in", "equal", "not_equal"],
     values: []
-  }
-},
-{
-  value: "count_year",
-  label: "Count Year",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer"
   }
 },
 {
@@ -316,7 +289,7 @@ var properties = [{
   }
 },
 {
-  value: "marker-col",
+  value: "marker-color",
   label: "Marker Colour",
   table: {
     visible: false,
