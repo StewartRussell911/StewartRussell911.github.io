@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Counts 2",
+  title: "RRAMS Viewer > Counts 3",
   layerName: "Overberg DM Counts",
   hoverProperty: "tcname",
   sortProperty: "count_date",
@@ -93,7 +93,7 @@ var properties = [{
   }
 },
 {
-  value: "oberg_inventory_custodia",
+  value: "oberg_inventory_custodian",
   label: "Custodian",
   table: {
     visible: true,
