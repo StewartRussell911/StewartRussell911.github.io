@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/oberg_inventory_min.geojson",
-  title: "RRAMS Viewer > 02-11",
+  title: "RRAMS Viewer > 02-12",
   layerName: "Overberg DM Roads",
   hoverProperty: "road_link",
   sortProperty: "id",
@@ -680,12 +680,20 @@ $("[name='view']").click(function() {
   $(".in,.open").removeClass("in open");
   if (this.id === "map-graph") {
     switchView("split");
+	//added
+	buildFilters();
+	buildTable();
+	//added	
     return false;
   } else if (this.id === "map-only") {
     switchView("map");
     return false;
   } else if (this.id === "graph-only") {
     switchView("table");
+	//added
+	buildFilters();
+	buildTable();
+	//added
     return false;
   }
 });
