@@ -1,5 +1,5 @@
 var config = {
-  geojson: "./data/sw.geojson",
+  geojson: "./data/swellendam.geojson",
   title: "RRAMS Viewer > 05-07",
   layerName: "Swellendam LM Roads",
   hoverProperty: "road_link",
