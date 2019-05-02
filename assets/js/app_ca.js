@@ -1,5 +1,5 @@
 var config = {
-  geojson: "./data/ca.geojson",
+  geojson: "./data/capeagulhas.geojson",
   title: "RRAMS Viewer > 05-07",
   layerName: "Cape Agulhas LM Roads",
   hoverProperty: "road_link",
