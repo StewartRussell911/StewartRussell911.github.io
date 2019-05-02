@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Counts 5",
+  title: "RRAMS Viewer > Traffic Counts",
   layerName: "Overberg Traffic Counts",
   hoverProperty: "tcname",
   sortProperty: "count_date",
@@ -312,9 +312,9 @@ var properties = [{
 }];
 
 function drawCharts() {
-  // Custodian
+  // Count Types
   $(function() {
-    var result = alasql("SELECT custodian AS label, SUM(length_km) AS total FROM ? GROUP BY custodian", [features]);
+    var result = alasql("SELECT count_ty_1 AS label, COUNT(*) AS total FROM ? GROUP BY count_ty_1", [features]);
     var columns = $.map(result, function(status) {
       return [[status.label, status.total]];
     });
@@ -327,9 +327,9 @@ function drawCharts() {
     });
   });
 
-  // Functional
+  // ADT by Class
   $(function() {
-    var result = alasql("SELECT Functional AS label, SUM(length_km) AS total FROM ? GROUP BY Functional", [features]);
+    var result = alasql("SELECT oberg_inventory_Functional AS label, SUM(ADT) AS total FROM ? GROUP BY oberg_inventory_Functional", [features]);
     
 	//gen the columns
 	var columns = $.map(result, function(zone) {
@@ -370,7 +370,7 @@ function drawCharts() {
 
   // Condition
   $(function() {
-    var result = alasql("SELECT vci_rating AS label, SUM(length_km) AS total FROM ? GROUP BY vci_rating ORDER BY label ASC", [features]);
+    var result = alasql("SELECT oberg_inventory_Functional AS label, SUM(ADT) AS total FROM ? GROUP BY oberg_inventory_Functional ORDER BY label ASC", [features]);
     var chart = c3.generate({
         bindto: "#species-chart",
         size: {
