@@ -1,12 +1,12 @@
 var config = {
-  geojson: "./data/road_inventory_type0.geojson",
-  title: "RRAMS Viewer > 29-01",
+  geojson: "./data/oberg_inventory.geojson",
+  title: "RRAMS Viewer > 05-02",
   layerName: "Road Inventory",
   hoverProperty: "road_link",
   sortProperty: "road_link",
   sortOrder: "asc",
 };
-//geojson: "./data/congress_park_trees.geojson",
+//geojson: "./data/road_inventory_type0.geojson", geojson: "./data/congress_park_trees.geojson",
 
 var properties = [{
   value: "id",
@@ -77,6 +77,138 @@ var properties = [{
   }
 },
 {
+  value: "fromlink",
+  label: "From/Start Link",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "tolink",
+  label: "To/Destination Link",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "Road Type",
+  label: "Road Type",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "Functional",
+  label: "Functional Class",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "sp_name",
+  label: "Subplace Name",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "mp_name",
+  label: "Mainplace Name",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "Municipali",
+  label: "Municipality",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "rainfall",
+  label: "Rainfall Range",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "one_way",
+  label: "Is One Way?",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "sidewtype",
+  label: "Sidewalk Type",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string"
+  }
+},
+{
+  value: "sidewalk_p",
+  label: "Sidewalk (mm)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "Kerb_pe",
+  label: "Kerbing (mm)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
   value: "num_lanes",
   label: "No. Lanes",
   table: {
@@ -110,24 +242,30 @@ var properties = [{
   }
 },
 {
-  value: "asset_type",
-  label: "Asset Type",
+  value: "paved_widt",
+  label: "Paved Width (m)",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
-    type: "integer",
-    input: "checkbox",
-    vertical: true,
-    multiple: true,
-    operators: ["greater_than", "equal", "not_equal", "less_than"],
-    values: []
+    type: "integer"
   }
 },
 {
-  value: "gen_cond_rating",
-  label: "GCI",
+  value: "linklength",
+  label: "Link Length (m)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "vci_rating",
+  label: "Condition Rating",
   table: {
     visible: true,
     sortable: true
@@ -139,6 +277,17 @@ var properties = [{
     multiple: true,
     operators: ["in", "not_in", "equal", "not_equal"],
     values: []
+  }
+},
+{
+  value: "cond_year",
+  label: "Condition Year",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
   }
 },
 {
@@ -174,9 +323,9 @@ function drawCharts() {
     });
   });
 
-  // Asset Type
+  // Functional
   $(function() {
-    var result = alasql("SELECT asset_type AS label, Count(*) AS total FROM ? GROUP BY asset_type", [features]);
+    var result = alasql("SELECT Functional AS label, Count(*) AS total FROM ? GROUP BY Functional", [features]);
     
 	//gen the columns
 	var columns = $.map(result, function(zone) {
@@ -197,12 +346,12 @@ function drawCharts() {
   // Road Type
   $(function() {
     var sizes = [];
-    var flex = alasql("SELECT 'Flexible' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 65", [features]);
-    var block = alasql("SELECT 'Block' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 62", [features]);
-	var conc = alasql("SELECT 'Concrete' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 64", [features]);
-	var gravel = alasql("SELECT 'Gravel' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 59", [features]);
-	var earth = alasql("SELECT 'Earth' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 57", [features]);
-	var track = alasql("SELECT 'Track' AS category, Count(*) AS total FROM ? WHERE CAST(asset_type as INT) = 69", [features]);
+    var flex = alasql("SELECT 'Flexible' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 65", [features]);
+    var block = alasql("SELECT 'Block' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 62", [features]);
+	var conc = alasql("SELECT 'Concrete' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 64", [features]);
+	var gravel = alasql("SELECT 'Gravel' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 59", [features]);
+	var earth = alasql("SELECT 'Earth' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 57", [features]);
+	var track = alasql("SELECT 'Track' AS category, Count(*) AS total FROM ? WHERE CAST((Road Type) as INT) = 69", [features]);
     sizes.push(flex, block, conc, gravel, earth, track);
     var columns = $.map(sizes, function(size) {
       return [[size[0].category, size[0].total]];
@@ -218,7 +367,7 @@ function drawCharts() {
 
   // Condition
   $(function() {
-    var result = alasql("SELECT gen_cond_rating AS label, Count(*) AS total FROM ? GROUP BY gen_cond_rating ORDER BY label ASC", [features]);
+    var result = alasql("SELECT vci_rating AS label, Count(*) AS total FROM ? GROUP BY vci_rating ORDER BY label ASC", [features]);
     var chart = c3.generate({
         bindto: "#species-chart",
         size: {
