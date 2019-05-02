@@ -1,5 +1,5 @@
 var config = {
-  geojson: "./data/os.geojson",
+  geojson: "./data/overstrand.geojson",
   title: "RRAMS Viewer > 05-07",
   layerName: "Overstrand LM Roads",
   hoverProperty: "road_link",
