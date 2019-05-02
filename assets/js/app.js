@@ -1,12 +1,12 @@
 var config = {
   geojson: "./data/oberg_inventory.geojson",
-  title: "RRAMS Viewer > 05-07",
+  title: "RRAMS Viewer > 05-08",
   layerName: "Overberg DM Roads",
   hoverProperty: "road_link",
   sortProperty: "road_link",
   sortOrder: "asc",
 };
-//geojson: "./data/road_inventory_type0.geojson", geojson: "./data/congress_park_trees.geojson",
+//geojson: "./data/road_inventory_type.geojson", geojson: "./data/congress_park_trees.geojson",
 
 var properties = [{
   value: "id",
