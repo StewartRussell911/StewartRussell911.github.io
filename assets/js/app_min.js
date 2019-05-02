@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/oberg_inventory_min.geojson",
-  title: "RRAMS Viewer > 05-10",
+  title: "RRAMS Viewer > 05-11",
   layerName: "Overberg DM Roads",
   hoverProperty: "road_link",
   sortProperty: "id",
@@ -372,8 +372,8 @@ function buildConfig() {
     }
   });
 
-  buildFilters();
-  buildTable();
+  //buildFilters();
+  //buildTable();
 }
 
 // Basemap Layers
