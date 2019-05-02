@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/oberg_inventory_min.geojson",
-  title: "RRAMS Viewer > 05-11",
+  title: "RRAMS Viewer > 02-11",
   layerName: "Overberg DM Roads",
   hoverProperty: "road_link",
   sortProperty: "id",
