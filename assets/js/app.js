@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/oberg_inventory.geojson",
-  title: "RRAMS Viewer > 05-02",
+  title: "RRAMS Viewer > 05-03",
   layerName: "Road Inventory",
   hoverProperty: "road_link",
   sortProperty: "road_link",
@@ -106,7 +106,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -117,7 +122,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -128,7 +138,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -139,7 +154,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -150,7 +170,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -172,7 +197,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -183,7 +213,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -216,7 +251,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "integer"
+    type: "integer",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -287,7 +327,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "integer"
+    type: "integer",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -310,7 +355,7 @@ var properties = [{
 function drawCharts() {
   // Custodian
   $(function() {
-    var result = alasql("SELECT custodian AS label, SUM(length_km) AS total FROM ? GROUP BY custodian", [features]);
+    var result = alasql("SELECT custodian AS label, CAST(SUM(length_km) AS INT) AS total FROM ? GROUP BY custodian", [features]);
     var columns = $.map(result, function(status) {
       return [[status.label, status.total]];
     });
@@ -325,7 +370,7 @@ function drawCharts() {
 
   // Functional
   $(function() {
-    var result = alasql("SELECT Functional AS label, SUM(length_km) AS total FROM ? GROUP BY Functional", [features]);
+    var result = alasql("SELECT Functional AS label, CAST(SUM(length_km) AS INT) AS total FROM ? GROUP BY Functional", [features]);
     
 	//gen the columns
 	var columns = $.map(result, function(zone) {
@@ -346,11 +391,11 @@ function drawCharts() {
   // Road Type
   $(function() {
     var sizes = [];
-    var dual = alasql("SELECT 'Road - Dual c/way' AS category, Count(*) AS total FROM ? WHERE Road_Type = 'Road - Dual c/way'", [features]);
-	var flex = alasql("SELECT 'Road - Paved - Flexible' AS category, Count(*) AS total FROM ? WHERE Road_Type = 'Road - Paved - Flexible'", [features]);
-    var block = alasql("SELECT 'Road - Paved - Block' AS category, Count(*) AS total FROM ? WHERE Road_Type = 'Road - Paved - Block'", [features]);
-	var conc = alasql("SELECT 'Road - Paved - Concrete' AS category, Count(*) AS total FROM ? WHERE Road Type = 'Road - Paved - Concrete'", [features]);
-	var gravel = alasql("SELECT 'Road - Gravel' AS category, Count(*) AS total FROM ? WHERE Road Type = 'Road - Gravel'", [features]);
+    var dual = alasql("SELECT 'Dual c/way' AS category, Count(*) AS total FROM ? WHERE (Road_Type = 'Road - Dual c/way')", [features]);
+	var flex = alasql("SELECT 'Paved - Flexible' AS category, Count(*) AS total FROM ? WHERE (Road_Type = 'Road - Paved - Flexible')", [features]);
+    var block = alasql("SELECT 'Block' AS category, Count(*) AS total FROM ? WHERE (Road_Type = 'Road - Paved - Block')", [features]);
+	var conc = alasql("SELECT 'Paved - Concrete' AS category, Count(*) AS total FROM ? WHERE (Road Type = 'Road - Paved - Concrete')", [features]);
+	var gravel = alasql("SELECT 'Gravel' AS category, Count(*) AS total FROM ? WHERE (Road Type = 'Road - Gravel')", [features]);
     sizes.push(dual, flex, block, conc, gravel);
     var columns = $.map(sizes, function(size) {
       return [[size[0].category, size[0].total]];
@@ -366,7 +411,7 @@ function drawCharts() {
 
   // Condition
   $(function() {
-    var result = alasql("SELECT vci_rating AS label, SUM(length_km) AS total FROM ? GROUP BY vci_rating ORDER BY label ASC", [features]);
+    var result = alasql("SELECT vci_rating AS label, CAST(SUM(length_km) as INT) AS total FROM ? GROUP BY vci_rating ORDER BY label ASC", [features]);
     var chart = c3.generate({
         bindto: "#species-chart",
         size: {
