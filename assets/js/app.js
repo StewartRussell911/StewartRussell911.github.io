@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/oberg_inventory.geojson",
-  title: "RRAMS Viewer > 05-03",
+  title: "RRAMS Viewer > 05-04",
   layerName: "Road Inventory",
   hoverProperty: "road_link",
   sortProperty: "road_link",
@@ -355,7 +355,7 @@ var properties = [{
 function drawCharts() {
   // Custodian
   $(function() {
-    var result = alasql("SELECT custodian AS label, CAST(SUM(length_km) AS INT) AS total FROM ? GROUP BY custodian", [features]);
+    var result = alasql("SELECT custodian AS label, SUM(length_km) AS total FROM ? GROUP BY custodian", [features]);
     var columns = $.map(result, function(status) {
       return [[status.label, status.total]];
     });
@@ -370,7 +370,7 @@ function drawCharts() {
 
   // Functional
   $(function() {
-    var result = alasql("SELECT Functional AS label, CAST(SUM(length_km) AS INT) AS total FROM ? GROUP BY Functional", [features]);
+    var result = alasql("SELECT Functional AS label, SUM(length_km) AS total FROM ? GROUP BY Functional", [features]);
     
 	//gen the columns
 	var columns = $.map(result, function(zone) {
@@ -411,7 +411,7 @@ function drawCharts() {
 
   // Condition
   $(function() {
-    var result = alasql("SELECT vci_rating AS label, CAST(SUM(length_km) as INT) AS total FROM ? GROUP BY vci_rating ORDER BY label ASC", [features]);
+    var result = alasql("SELECT vci_rating AS label, SUM(length_km) AS total FROM ? GROUP BY vci_rating ORDER BY label ASC", [features]);
     var chart = c3.generate({
         bindto: "#species-chart",
         size: {
