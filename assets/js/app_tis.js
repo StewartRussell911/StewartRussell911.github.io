@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Counts 1",
+  title: "RRAMS Viewer > Counts 2",
   layerName: "Overberg DM Counts",
   hoverProperty: "tcname",
   sortProperty: "count_date",
@@ -323,7 +323,7 @@ var properties = [{
     sortable: false
   },
   filter: {
-    type: "string",
+    type: "string"
   }
 },
 {
@@ -334,7 +334,7 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string",
+    type: "string"
   }
 }];
 
