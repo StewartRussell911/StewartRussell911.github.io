@@ -1,18 +1,18 @@
 var config = {
-  geojson: "./data/theewaterskloof.geojson",
-  title: "RRAMS Viewer > 05-07",
-  layerName: "Theewaterskloof LM Roads",
-  hoverProperty: "road_link",
-  sortProperty: "road_link",
-  sortOrder: "asc",
+  geojson: "./data/count_station_totals.geojson",
+  title: "RRAMS Viewer > Counts 1",
+  layerName: "Overberg DM Counts",
+  hoverProperty: "tcname",
+  sortProperty: "count_date",
+  sortOrder: "desc",
 };
-//geojson: "./data/road_inventory_type0.geojson", geojson: "./data/congress_park_trees.geojson",
+//geojson: "./data/road_inventory_type.geojson", geojson: "./data/congress_park_trees.geojson",
 
 var properties = [{
-  value: "id",
-  label: "ID",
+  value: "tcname",
+  label: "tcname",
   table: {
-    visible: false,
+    visible: true,
     sortable: true
   },
   filter: {
@@ -21,8 +21,8 @@ var properties = [{
   info: true
 },
 {
-  value: "gid",
-  label: "Global ID",
+  value: "roadlink_i",
+  label: "Roadlink ID",
   table: {
     visible: false,
     sortable: false
@@ -33,73 +33,19 @@ var properties = [{
   info: false
 },
 {
-  value: "road_link",
-  label: "Road Link",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string"
-  }
-},
-{
-  value: "fromkm",
-  label: "From Km",
+  value: "oberg_inventory_road_link",
+  label: "Road link",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
     type: "integer"
-  }
-},
-{
-  value: "tokm",
-  label: "To Km",
-  table: {
-    visible: true,
-    sortable: true
   },
-  filter: {
-    type: "integer"
-  }
+  info: true
 },
 {
-  value: "length_km",
-  label: "Length (km)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer"
-  }
-},
-{
-  value: "fromlink",
-  label: "From/Start Link",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string"
-  }
-},
-{
-  value: "tolink",
-  label: "To/Destination Link",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string"
-  }
-},
-{
-  value: "Road_Type",
+  value: "oberg_inventory_Road_Type",
   label: "Road Type",
   table: {
     visible: true,
@@ -115,7 +61,7 @@ var properties = [{
   }
 },
 {
-  value: "Functional",
+  value: "oberg_inventory_Functional",
   label: "Functional Class",
   table: {
     visible: true,
@@ -131,8 +77,8 @@ var properties = [{
   }
 },
 {
-  value: "sp_name",
-  label: "Subplace Name",
+  value: "oberg_inventory_Municipali",
+  label: "Muni",
   table: {
     visible: true,
     sortable: true
@@ -147,8 +93,8 @@ var properties = [{
   }
 },
 {
-  value: "mp_name",
-  label: "Mainplace Name",
+  value: "oberg_inventory_custodia",
+  label: "Custodian",
   table: {
     visible: true,
     sortable: true
@@ -163,8 +109,8 @@ var properties = [{
   }
 },
 {
-  value: "Municipali",
-  label: "Municipality",
+  value: "count_ty_1",
+  label: "Count Type",
   table: {
     visible: true,
     sortable: true
@@ -179,19 +125,8 @@ var properties = [{
   }
 },
 {
-  value: "rainfall",
-  label: "Rainfall Range",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string"
-  }
-},
-{
-  value: "one_way",
-  label: "Is One Way?",
+  value: "count_date",
+  label: "Count Date",
   table: {
     visible: true,
     sortable: true
@@ -206,24 +141,8 @@ var properties = [{
   }
 },
 {
-  value: "sidewtype",
-  label: "Sidewalk Type",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    input: "checkbox",
-    vertical: true,
-    multiple: true,
-    operators: ["in", "not_in", "equal", "not_equal"],
-    values: []
-  }
-},
-{
-  value: "sidewalk_p",
-  label: "Sidewalk (mm)",
+  value: "count_year",
+  label: "Count Year",
   table: {
     visible: true,
     sortable: true
@@ -233,8 +152,8 @@ var properties = [{
   }
 },
 {
-  value: "Kerb_pe",
-  label: "Kerbing (mm)",
+  value: "total_heav",
+  label: "Total Heavy",
   table: {
     visible: true,
     sortable: true
@@ -244,8 +163,107 @@ var properties = [{
   }
 },
 {
-  value: "num_lanes",
-  label: "No. Lanes",
+  value: "total_very",
+  label: "Total Very Heavy",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "total_bus",
+  label: "Total Bus",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "total_taxi",
+  label: "Total Taxi",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "percentage",
+  label: "% Heavies",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "E80_per_da",
+  label: "E80s per Day",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "MESA",
+  label: "MESA",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "total_coun",
+  label: "Total Count",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "ADT",
+  label: "ADT",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "Current AD",
+  label: "Current ADT",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+{
+  value: "count_hour",
+  label: "Count Hours",
   table: {
     visible: true,
     sortable: true
@@ -260,52 +278,8 @@ var properties = [{
   }
 },
 {
-  value: "lane_width",
-  label: "Lane Width (m)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer"
-  }
-},
-{
-  value: "road_width",
-  label: "Road Width (m)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer"
-  }
-},
-{
-  value: "paved_widt",
-  label: "Paved Width (m)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer"
-  }
-},
-{
-  value: "linklength",
-  label: "Link Length (m)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer"
-  }
-},
-{
-  value: "vci_rating",
-  label: "Condition Rating",
+  value: "type_descr",
+  label: "Type of Count",
   table: {
     visible: true,
     sortable: true
@@ -320,35 +294,47 @@ var properties = [{
   }
 },
 {
-  value: "cond_year",
-  label: "Condition Year",
+  value: "expansion_",
+  label: "Expansion Factor",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
-    type: "integer",
-    input: "checkbox",
-    vertical: true,
-    multiple: true,
-    operators: ["in", "not_in", "equal", "not_equal"],
-    values: []
+    type: "integer"
   }
 },
 {
-  value: "custodian",
-  label: "Custodian/Type",
+  value: "growth_rat",
+  label: "Growth Rate",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer"
+  }
+},
+
+{
+  value: "marker-col",
+  label: "Marker Colour",
+  table: {
+    visible: false,
+    sortable: false
+  },
+  filter: {
+    type: "string",
+  },
+{
+  value: "Doc_URL",
+  label: "Document URL",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
     type: "string",
-    input: "checkbox",
-    vertical: true,
-    multiple: true,
-    operators: ["in", "not_in", "equal", "not_equal"],
-    values: []
   }
 }];
 
