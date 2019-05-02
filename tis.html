@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="RRAMS viewer configured by smec south africa">
     <meta name="author" content="Bryan McBride">
-    <title class="title">RRAMS Dashboard</title>
+    <title class="title">RRAMS Dashboard: Traffic Counts</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
@@ -43,7 +43,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <span class="navbar-brand title">RRAMS Dashboard</span>
+          <span class="navbar-brand title">RRAMS Dashboard: Traffic Counts</span>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -152,16 +152,12 @@
           <div class="modal-body" style="overflow: auto;">
             <div role="tabpanel">
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#status-chart" aria-controls="reports" role="tab" data-toggle="tab">Custodians</a></li>
-                <li role="presentation"><a href="#zone-chart" aria-controls="charts" role="tab" data-toggle="tab">Asset Types</a></li>
-                <li role="presentation"><a href="#size-chart" aria-controls="charts" role="tab" data-toggle="tab">Road Types</a></li>
-                <li role="presentation"><a href="#species-chart" aria-controls="charts" role="tab" data-toggle="tab">Condition</a></li>
+                <li role="presentation" class="active"><a href="#status-chart" aria-controls="reports" role="tab" data-toggle="tab">Count Types</a></li>
+                <li role="presentation"><a href="#zone-chart" aria-controls="charts" role="tab" data-toggle="tab">Count Totals</a></li>
               </ul>
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="status-chart"></div>
                 <div role="tabpanel" class="tab-pane" id="zone-chart"></div>
-                <div role="tabpanel" class="tab-pane" id="size-chart"></div>
-                <div role="tabpanel" class="tab-pane" id="species-chart"></div>
               </div>
             </div>
           </div>
