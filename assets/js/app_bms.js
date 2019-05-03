@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Bridges & Culverts - 4",
+  title: "RRAMS Viewer > Bridges & Culverts - 5",
   layerName: "Overberg Bridge Inspections",
   hoverProperty: "id",
   sortProperty: "id",
@@ -678,5 +678,5 @@ $("#download-pdf-btn").click(function() {
 });
 
 $("#chartModal").on("shown.bs.modal", function (e) {
-  drawCharts();
+  //drawCharts();
 });
