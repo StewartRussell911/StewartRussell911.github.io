@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Bridges & Culverts - 6",
+  title: "RRAMS Viewer > Bridges & Culverts - 7",
   layerName: "Overberg Bridge Inspections",
   hoverProperty: "id",
   sortProperty: "id",
@@ -28,6 +28,7 @@ var properties = [{
   },
   filter: {
     type: "string"
+  }
 },
 {
   value: "municipality",
