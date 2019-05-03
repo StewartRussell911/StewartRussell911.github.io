@@ -157,7 +157,7 @@ var properties = [{
 function drawCharts() {
   // Count Types
   $(function() {
-    var result = alasql("SELECT Structure Type AS label, COUNT(*) AS total FROM ? GROUP BY Structure Type", [features]);
+    var result = alasql("SELECT 'Structure Type' AS label, COUNT(*) AS total FROM ? GROUP BY 'Structure Type'", [features]);
     var columns = $.map(result, function(status) {
       return [[status.label, status.total]];
     });
