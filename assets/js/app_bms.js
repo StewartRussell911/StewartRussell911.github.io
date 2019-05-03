@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/bms_v.geojson",
-  title: "RRAMS Viewer > Bridges & Culverts - 14",
+  title: "RRAMS Viewer > Bridges & Culverts - 15",
   layerName: "Overberg Bridge Inspections",
   hoverProperty: "id",
   sortProperty: "id",
