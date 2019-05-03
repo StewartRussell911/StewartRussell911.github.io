@@ -190,6 +190,7 @@ function drawCharts() {
         }
     });
   });
+}
 
 $(function() {
   $(".title").html(config.title);
