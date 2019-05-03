@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/bms_v.geojson",
-  title: "RRAMS Viewer > Bridges & Culverts - 11",
+  title: "RRAMS Viewer > Bridges & Culverts - 13",
   layerName: "Overberg Bridge Inspections",
   hoverProperty: "id",
   sortProperty: "id",
@@ -313,17 +313,17 @@ var highlightLayer = L.geoJson(null, {
       color: "#FFF",
       weight: 2,
       opacity: 1,
-      fillColor: "#00FFFF",
+      fillColor: "#1891C9",
       fillOpacity: 1,
       clickable: false
     });
   },
   style: function (feature) {
     return {
-      color: "#00FFFF",
+      color: "#1891C9",
       weight: 2,
       opacity: 1,
-      fillColor: "#00FFFF",
+      fillColor: "#1891C9",
       fillOpacity: 0.5,
       clickable: false
     };
