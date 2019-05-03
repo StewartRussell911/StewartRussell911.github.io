@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Bridges & Culverts - 3",
+  title: "RRAMS Viewer > Bridges & Culverts - 4",
   layerName: "Overberg Bridge Inspections",
   hoverProperty: "id",
   sortProperty: "id",
@@ -157,7 +157,7 @@ var properties = [{
 function drawCharts() {
   // Count Types
   $(function() {
-    var result = alasql("SELECT [Structure Type] AS label, COUNT(*) AS total FROM ? GROUP BY [Structure Type]", [features]);
+    var result = alasql("SELECT Structure_Type AS label, COUNT(*) AS total FROM ? GROUP BY Structure_Type", [features]);
     var columns = $.map(result, function(status) {
       return [[status.label, status.total]];
     });
