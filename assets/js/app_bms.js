@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/bms_v.geojson",
-  title: "RRAMS Viewer > Bridges & Culverts - 16",
+  title: "RRAMS Viewer > Bridges & Culverts",
   layerName: "Overberg Bridge Inspections",
   hoverProperty: "id",
   sortProperty: "id",
@@ -177,7 +177,7 @@ function drawCharts() {
 
   // ADT by Class
   $(function() {
-    var result = alasql("SELECT inspectionstatus AS label, SUM(ADT) AS total FROM ? GROUP BY inspectionstatus", [features]);
+    var result = alasql("SELECT inspectionstatus AS label, COUNT(*) AS total FROM ? GROUP BY inspectionstatus", [features]);
     
 	//gen the columns
 	var columns = $.map(result, function(zone) {
