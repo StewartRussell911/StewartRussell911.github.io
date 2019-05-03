@@ -20,7 +20,7 @@ var properties = [{
   info: true
 },
 {
-  value: "[Structure Type]",
+  value: "Structure_Type",
   label: "Structure Type",
   table: {
     visible: true,
@@ -63,7 +63,7 @@ var properties = [{
   }
 },
 {
-  value: "[Road Name]",
+  value: "Road_Name",
   label: "Road Name",
   table: {
     visible: true,
@@ -117,7 +117,7 @@ var properties = [{
   }
 },
 {
-  value: "[Crossing Feature]",
+  value: "Crossing_Feature",
   label: "Crossing Feature",
   table: {
     visible: true,
