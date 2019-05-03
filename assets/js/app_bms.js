@@ -153,7 +153,6 @@ var properties = [{
     formatter: urlFormatter
   },
   filter: false
-}
 }];
 
 function drawCharts() {
