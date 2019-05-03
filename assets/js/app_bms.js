@@ -1,12 +1,11 @@
 var config = {
   geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Bridges & Culverts",
+  title: "RRAMS Viewer > Bridges & Culverts - 1",
   layerName: "Overberg Bridge Inspections",
   hoverProperty: "id",
   sortProperty: "id",
   sortOrder: "asc",
 };
-
 
 var properties = [{
   value: "id",
@@ -408,6 +407,7 @@ info.onAdd = function (map) {
   this.update();
   return this._div;
 };
+
 info.update = function (props) {
   this._div.innerHTML = "";
 };
