@@ -1,6 +1,6 @@
 var config = {
   geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Bridges & Culverts - 2",
+  title: "RRAMS Viewer > Bridges & Culverts - 3",
   layerName: "Overberg Bridge Inspections",
   hoverProperty: "id",
   sortProperty: "id",
@@ -20,7 +20,7 @@ var properties = [{
   info: true
 },
 {
-  value: "Structure Type",
+  value: "[Structure Type]",
   label: "Structure Type",
   table: {
     visible: true,
@@ -63,7 +63,7 @@ var properties = [{
   }
 },
 {
-  value: "Road Name",
+  value: "[Road Name]",
   label: "Road Name",
   table: {
     visible: true,
@@ -117,7 +117,7 @@ var properties = [{
   }
 },
 {
-  value: "Crossing Feature",
+  value: "[Crossing Feature]",
   label: "Crossing Feature",
   table: {
     visible: true,
