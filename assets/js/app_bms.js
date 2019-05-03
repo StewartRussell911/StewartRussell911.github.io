@@ -1,6 +1,6 @@
 var config = {
-  geojson: "./data/count_station_totals.geojson",
-  title: "RRAMS Viewer > Bridges & Culverts - 10",
+  geojson: "./data/bms_v.geojson",
+  title: "RRAMS Viewer > Bridges & Culverts - 11",
   layerName: "Overberg Bridge Inspections",
   hoverProperty: "id",
   sortProperty: "id",
@@ -27,7 +27,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -38,7 +43,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -49,7 +59,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -60,7 +75,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -93,7 +113,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
@@ -104,7 +129,12 @@ var properties = [{
     sortable: true
   },
   filter: {
-    type: "string"
+    type: "string",
+    input: "checkbox",
+    vertical: true,
+    multiple: true,
+    operators: ["in", "not_in", "equal", "not_equal"],
+    values: []
   }
 },
 {
